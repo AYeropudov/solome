@@ -25,7 +25,11 @@ SECRET_KEY = 'x)k_36d_bm3-5@!q-@(po(br2b(2$j&kd__^$s$xu*^-0jocvs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'posuda.lc',
+    'localhost'
+]
 
 
 # Application definition
