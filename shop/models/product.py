@@ -5,7 +5,7 @@ from imagekit.processors import ResizeToFill
 
 
 def upload_to(instance, filename):
-    filename =str(uuid.uuid1()) + "." + filename.split('.', 1)[-1]
+    filename = str(uuid.uuid1()) + "." + filename.split('.', 1)[-1]
     return 'uploads/photo/{}'.format(filename)
 
 
@@ -23,6 +23,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2, default= 0.00)
     created_at = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False, blank=True)
+
 
 class ProductVariant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, db_index=True)
@@ -78,10 +79,10 @@ class StockLocation(models.Model):
     is_delete = models.BooleanField(default=False, blank=True)
 
 
-# class ProductToCatalog(models.Model):
-#     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-#     catalog = models.ForeignKey("Catalog", on_delete=models.SET_NULL, null=True)
-#     is_delete = models.BooleanField(default=False, blank=True)
+class ProductToCatalog(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    catalog = models.ForeignKey("Catalog", on_delete=models.SET_NULL, null=True)
+    is_delete = models.BooleanField(default=False, blank=True)
 
 
 class AttributeForProduct(models.Model):
@@ -104,6 +105,8 @@ class ProductAttributes(models.Model):
     value = models.CharField(max_length=300, default='n/a', blank=True)
     is_delete = models.BooleanField(default=False, blank=True)
 
+
 class ProductTag(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, db_index=True, null=True)
     tag = models.ForeignKey('Tag', on_delete=models.SET_NULL, db_index=True, null=True)
+
