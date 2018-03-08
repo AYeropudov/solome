@@ -6,13 +6,20 @@ from imagekit.processors import ResizeToFill
 
 def upload_to(instance, filename):
     filename = str(uuid.uuid1()) + "." + filename.split('.', 1)[-1]
-    return 'uploads/photo/{}'.format(filename)
+    return 'media/uploads/photo/{}'.format(filename)
 
 
 class ProductClass(models.Model):
     title = models.CharField(max_length=300, db_index=True)
     has_variants = models.BooleanField(default=False, blank=True)
     is_delete = models.BooleanField(default=False, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Вид товара'
+        verbose_name_plural = 'Виды товаров'
 
 
 class Product(models.Model):
@@ -24,6 +31,14 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False, blank=True)
 
+    def __str__(self):
+        return "{}, цена - {}, {}".format(self.title, self.price, self.product_class.has_variants)
+
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+
 
 class ProductVariant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, db_index=True)
@@ -32,11 +47,18 @@ class ProductVariant(models.Model):
     is_delete = models.BooleanField(default=False, blank=True)
     is_featured = models.BooleanField(default=False, blank=True)
 
+    def __str__(self):
+        return "{} - {} , цена {}".format(self.product.title, self.sku, self.override_price)
+
+    class Meta:
+        verbose_name = 'Разновидность товара'
+        verbose_name_plural = 'Разновидность товара'
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, db_index=True)
     created_at = models.DateTimeField('date created', auto_now_add=True)
-    ink = models.ImageField(upload_to=upload_to)
+    link = models.ImageField(upload_to=upload_to)
     full = ImageSpecField(source='link',
                           processors=[],
                           format='PNG',
@@ -55,7 +77,7 @@ class ProductImage(models.Model):
 class VariantImage(models.Model):
     product = models.ForeignKey(ProductVariant, on_delete=models.DO_NOTHING, db_index=True)
     created_at = models.DateTimeField('date created', auto_now_add=True)
-    ink = models.ImageField(upload_to=upload_to)
+    link = models.ImageField(upload_to=upload_to)
     full = ImageSpecField(source='link',
                           processors=[],
                           format='PNG',

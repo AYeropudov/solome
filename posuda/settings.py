@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
-    'mptt'
+    'mptt',
+    'imagekit'
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static_content')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static_content')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_content'), os.path.join(BASE_DIR, 'media'),)
