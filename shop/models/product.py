@@ -6,7 +6,7 @@ from imagekit.processors import ResizeToFill
 
 def upload_to(instance, filename):
     filename = str(uuid.uuid1()) + "." + filename.split('.', 1)[-1]
-    return 'media/uploads/photo/{}'.format(filename)
+    return 'uploads/photo/{}'.format(filename)
 
 
 class ProductClass(models.Model):
