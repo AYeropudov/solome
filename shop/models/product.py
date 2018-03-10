@@ -72,6 +72,13 @@ class ProductImage(models.Model):
                             options={'quality': 60})
     is_delete = models.BooleanField(default=False, blank=True)
 
+    def __str__(self):
+        return self.product.title
+
+    class Meta:
+        verbose_name = 'Изображение товара'
+        verbose_name_plural = 'Изображения товаров'
+
 
 class VariantImage(models.Model):
     product = models.ForeignKey(ProductVariant, on_delete=models.DO_NOTHING, db_index=True)
@@ -90,6 +97,13 @@ class VariantImage(models.Model):
                             format='PNG',
                             options={'quality': 60})
     is_delete = models.BooleanField(default=False, blank=True)
+
+    def __str__(self):
+        return self.product.product.title
+
+    class Meta:
+        verbose_name = 'Изображение варианта товара'
+        verbose_name_plural = 'Изображения вариантов товаров'
 
 
 class Stock(models.Model):
