@@ -32,7 +32,9 @@ class Product(models.Model):
     is_delete = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
-        return "{}, цена - {}, {}".format(self.title, self.price, self.product_class.has_variants)
+        if self.product_class.has_variants:
+            return "{}, цена - {}, ВАРИАНТНЫЙ".format(self.title, self.price)
+        return "{}, цена - {}".format(self.title, self.price)
 
     class Meta:
         verbose_name = 'Товар'
