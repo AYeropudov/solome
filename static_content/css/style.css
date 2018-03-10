@@ -4152,3 +4152,6 @@ a.shipping-calculator-button:hover {
 :focus {
     outline: -webkit-focus-ring-color auto 0px;
 }
+.p-info{
+ width:80%!important; text-align: justify
+}
