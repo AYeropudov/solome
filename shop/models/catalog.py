@@ -12,6 +12,13 @@ class Catalog(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['title']
 
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Товарная Категория'
+        verbose_name_plural = 'Товарные Категории'
+
 
 class CatalogTag(models.Model):
     catalog = models.ForeignKey(Catalog, on_delete=models.SET_NULL, db_index=True, null=True)

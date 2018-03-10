@@ -34,7 +34,6 @@ class Product(models.Model):
     def __str__(self):
         return "{}, цена - {}, {}".format(self.title, self.price, self.product_class.has_variants)
 
-
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
