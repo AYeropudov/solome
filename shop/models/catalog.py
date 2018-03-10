@@ -13,6 +13,8 @@ class Catalog(MPTTModel):
         order_insertion_by = ['title']
 
     def __str__(self):
+        if self.parent:
+            return "{} - {}".format(self.parent.title, self.title)
         return self.title
 
     class Meta:
