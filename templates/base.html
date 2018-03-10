@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load menu %}
 <!DOCTYPE html>
 <html class="no-js" lang="ru">
 <head>
@@ -82,8 +83,7 @@
                             <img src="{% static "images/logo/logo.png" %}" alt="logo">
                         </a>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetu adipisicing elit sed do eiusmod tempor incididunt ut
-                        labore.</p>
+                    <p>Тут какой-то слоган и пару слов.</p>
                 </div>
                 <ul class="sidebar__thumd">
                     <li><a href="#"><img src="{% static "images/sidebar-img/1.jpg" %}" alt="sidebar images"></a></li>
@@ -97,24 +97,15 @@
                 </ul>
                 <div class="offset__widget">
                     <div class="offset__single">
-                        <h4 class="offset__title">Language</h4>
+                        <h4 class="offset__title">Язык</h4>
                         <ul>
                             <li><a href="#"> Engish </a></li>
-                            <li><a href="#"> French </a></li>
-                            <li><a href="#"> German </a></li>
-                        </ul>
-                    </div>
-                    <div class="offset__single">
-                        <h4 class="offset__title">Currencies</h4>
-                        <ul>
-                            <li><a href="#"> USD : Dollar </a></li>
-                            <li><a href="#"> EUR : Euro </a></li>
-                            <li><a href="#"> POU : Pound </a></li>
+                            <li><a href="#"> Russian </a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="offset__sosial__share">
-                    <h4 class="offset__title">Follow Us On Social</h4>
+                    <h4 class="offset__title">Мы в социальных сетях</h4>
                     <ul class="off__soaial__link">
                         <li><a class="bg--twitter" href="#" title="Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
 
@@ -133,55 +124,6 @@
             </div>
         </div>
         <!-- End Offset MEnu -->
-        <!-- Start Cart Panel -->
-        <div class="shopping__cart">
-            <div class="shopping__cart__inner">
-                <div class="offsetmenu__close__btn">
-                    <a href="#"><i class="zmdi zmdi-close"></i></a>
-                </div>
-                <div class="shp__cart__wrap">
-                    <div class="shp__single__product">
-                        <div class="shp__pro__thumb">
-                            <a href="#">
-                                <img src="{% static "images/product/sm-img/1.jpg" %}" alt="product images">
-                            </a>
-                        </div>
-                        <div class="shp__pro__details">
-                            <h2><a href="#">BO&Play Wireless Speaker</a></h2>
-                            <span class="quantity">QTY: 1</span>
-                            <span class="shp__price">$105.00</span>
-                        </div>
-                        <div class="remove__btn">
-                            <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                        </div>
-                    </div>
-                    <div class="shp__single__product">
-                        <div class="shp__pro__thumb">
-                            <a href="#">
-                                <img src="{% static "images/product/sm-img/2.jpg" %}" alt="product images">
-                            </a>
-                        </div>
-                        <div class="shp__pro__details">
-                            <h2><a href="product-details.html">Brone Candle</a></h2>
-                            <span class="quantity">QTY: 1</span>
-                            <span class="shp__price">$25.00</span>
-                        </div>
-                        <div class="remove__btn">
-                            <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <ul class="shoping__total">
-                    <li class="subtotal">Subtotal:</li>
-                    <li class="total__price">$130.00</li>
-                </ul>
-                <ul class="shopping__btn">
-                    <li><a href="#">View Cart</a></li>
-                    <li class="shp__checkout"><a href="#">Checkout</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- End Cart Panel -->
     </div>
     <!-- End Offset Wrapper -->
     {% if is_breadcrumbs %}
@@ -262,37 +204,26 @@
                     <!-- Start Single Footer Widget -->
                     <div class="col-md-3 col-lg-2 col-sm-6 smt-30 xmt-30">
                         <div class="ft__widget">
-                            <h2 class="ft__title">Categories</h2>
-                            <ul class="footer-categories">
-                                <li><a href="shop-sidebar.html">Men</a></li>
-                                <li><a href="shop-sidebar.html">Women</a></li>
-                                <li><a href="shop-sidebar.html">Accessories</a></li>
-                                <li><a href="shop-sidebar.html">Shoes</a></li>
-                                <li><a href="shop-sidebar.html">Dress</a></li>
-                                <li><a href="shop-sidebar.html">Denim</a></li>
-                            </ul>
+                            <h2 class="ft__title">Продукция</h2>
+                            {% menu_catalog_footer %}
                         </div>
                     </div>
                     <!-- Start Single Footer Widget -->
                     <div class="col-md-3 col-lg-2 col-sm-6 smt-30 xmt-30">
                         <div class="ft__widget">
-                            <h2 class="ft__title">Infomation</h2>
+                            <h2 class="ft__title">Информация</h2>
                             <ul class="footer-categories">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Returns & Exchanges</a></li>
-                                <li><a href="#">Shipping & Delivery</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="about.html">О компании</a></li>
+                                <li><a href="contact.html">Контакты</a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- Start Single Footer Widget -->
                     <div class="col-md-3 col-lg-3 col-lg-offset-1 col-sm-6 smt-30 xmt-30">
                         <div class="ft__widget">
-                            <h2 class="ft__title">Newsletter</h2>
+                            <h2 class="ft__title">Подписка</h2>
                             <div class="newsletter__form">
-                                <p>Subscribe to our newsletter and get 10% off your first purchase .</p>
+                                <p>Подписаться на новостную рассылку, и всегдя быть в курсе новинок</p>
                                 <div class="input__box">
                                     <div id="mc_embed_signup">
                                         <form action="#" method="post" id="mc-embedded-subscribe-form"
@@ -301,7 +232,7 @@
                                             <div id="mc_embed_signup_scroll" class="htc__news__inner">
                                                 <div class="news__input">
                                                     <input type="email" value="" name="EMAIL" class="email"
-                                                           id="mce-EMAIL" placeholder="Email Address" required>
+                                                           id="mce-EMAIL" placeholder="Email адресс" required>
                                                 </div>
                                                 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                                                 <div style="position: absolute; left: -5000px;" aria-hidden="true">
@@ -329,13 +260,13 @@
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="copyright__inner">
                             <div class="copyright">
-                                <p>© 2017 <a href="#">your website name</a>
-                                    All Right Reserved.</p>
+                                <p>© 2017-2018 <a href="#">powered by Ima for BELL'ORES</a>
+                                    все права защищены.</p>
                             </div>
                             <ul class="footer__menu">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="shop.html">Product</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="index.html">Главная</a></li>
+                                <li><a href="shop.html">Продукция</a></li>
+                                <li><a href="contact.html">Контакты</a></li>
                             </ul>
                         </div>
                     </div>
