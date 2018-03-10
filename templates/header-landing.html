@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load menu %}
 <header id="header" class="htc-header">
     <!-- Start Mainmenu Area -->
     <div id="sticky-header-with-topbar" class="mainmenu__area sticky__header">
@@ -14,60 +15,8 @@
                 <!-- Start MAinmenu Ares -->
                 <div class="col-md-8 col-lg-8 col-sm-6 col-xs-6">
                     <nav class="mainmenu__nav hidden-xs hidden-sm">
-                        <ul class="main__menu">
-                            <li><a href="/">Главная</a></li>
-                            <li><a href="#">О компании</a></li>
-{#                            <li class="drop"><a href="#">Продукция 1</a>#}
-{#                                <ul class="dropdown">#}
-{#                                    <li><a href="#">Покрывала</a></li>#}
-{#                                    <li><a href="#">Одеяла</a></li>#}
-{#                                    <li><a href="#">...</a></li>#}
-{#                                </ul>#}
-{#                            </li>#}
-                            <li class="drop"><a href="#">Продукция</a>
-                                <ul class="dropdown mega_dropdown">
-                                    <!-- Start Single Mega MEnu -->
-                                    <li><a class="mega__title" href="#">Одеяла</a>
-                                        <ul class="mega__item">
-                                            <li><a href="#">Коллекция 1</a></li>
-                                            <li><a href="#">Коллекция 2</a></li>
-                                            <li><a href="#">Коллекция 3</a></li>
-                                            <li><a href="#">Коллекция 4</a></li>
-                                            <li><a href="#">Коллекция 5</a></li>
-                                            <li><a href="#">Коллекция 6</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Single Mega MEnu -->
-                                    <!-- Start Single Mega MEnu -->
-                                    <li><a class="mega__title" href="#">Покрывала</a>
-                                        <ul class="mega__item">
-                                            <li><a href="#">Покрывала из ...</a></li>
-                                            <li><a href="#">Покрывала из ...</a></li>
-                                            <li><a href="#">Покрывала из ...</a></li>
-                                            <li><a href="#">Покрывала из ...</a></li>
-                                            <li><a href="#">Покрывала из ...</a></li>
-                                            <li><a href="#">Покрывала из ...</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Single Mega MEnu -->
-                                    <!-- Start Single Mega MEnu -->
-                                    <li>
-                                        <ul class="mega__item">
-                                            <li>
-                                                <div class="mega-item-img">
-                                                    <a href="#">
-                                                        <img src="{% static "images/feature-img/3.png" %}" alt="">
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Single Mega MEnu -->
-                                </ul>
-                            </li>
-                            <li><a href="#">Полезная информация</a></li>
-                            <li><a href="#">Контакты</a></li>
-                        </ul>
+{#                        MENU_TAG#}
+                        {% menu_block %}
                     </nav>
                     <div class="mobile-menu clearfix visible-xs visible-sm">
                         <nav id="mobile_dropdown">

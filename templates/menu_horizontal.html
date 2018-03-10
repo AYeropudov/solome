@@ -1,0 +1,20 @@
+<ul class="main__menu">
+    <li><a href="/">Главная</a></li>
+    <li><a href="#">О компании</a></li>
+    <li class="drop"><a href="#">Продукция</a>
+        <ul class="dropdown mega_dropdown">
+            {% for node in tree %}
+                <li>
+                    <a class="mega__title" href="#">{{ node.title }}</a>
+                    {% for child in node.child %}
+                       <ul class="mega__item">
+                            <li><a href="#">{{ child.title }}</a></li>
+                        </ul>
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li><a href="#">Полезная информация</a></li>
+    <li><a href="#">Контакты</a></li>
+</ul>
