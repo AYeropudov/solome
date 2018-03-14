@@ -4,3 +4,4 @@ from .deliveryView import DeliveryView
 from .catalogView import CatalogView
 from .itemView import ItemView
 from .infoView import InfoView
+from .sectionView import SectionView

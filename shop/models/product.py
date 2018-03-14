@@ -1,12 +1,12 @@
 from django.db import models
 import uuid
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFill, SmartResize, ResizeToFit
 
 
 def upload_to(instance, filename):
     filename = str(uuid.uuid1()) + "." + filename.split('.', 1)[-1]
-    return 'uploads/photo/{}'.format(filename)
+    return 'products/{}/{}'.format(instance.product.pk, filename)
 
 
 class ProductClass(models.Model):
@@ -65,11 +65,11 @@ class ProductImage(models.Model):
                           format='PNG',
                           options={'quality': 60})
     thumbnail = ImageSpecField(source='link',
-                               processors=[ResizeToFill(270, 372)],
+                               processors=[ResizeToFit(270, 372)],
                                format='PNG',
                                options={'quality': 60})
     paging = ImageSpecField(source='link',
-                            processors=[ResizeToFill(147, 143)],
+                            processors=[ResizeToFit(147, 143)],
                             format='PNG',
                             options={'quality': 60})
     is_delete = models.BooleanField(default=False, blank=True)
@@ -91,11 +91,11 @@ class VariantImage(models.Model):
                           format='PNG',
                           options={'quality': 60})
     thumbnail = ImageSpecField(source='link',
-                               processors=[ResizeToFill(270, 372)],
+                               processors=[ResizeToFit(270, 270)],
                                format='PNG',
                                options={'quality': 60})
     paging = ImageSpecField(source='link',
-                            processors=[ResizeToFill(147, 143)],
+                            processors=[ResizeToFit(147, 143)],
                             format='PNG',
                             options={'quality': 60})
     is_delete = models.BooleanField(default=False, blank=True)
