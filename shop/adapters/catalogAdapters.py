@@ -8,3 +8,7 @@ class CatalogAdapter:
         root_nodes = Catalog.objects.root_nodes()
         return root_nodes
 
+    @classmethod
+    def get_section_by_slug(cls, slug):
+        section = Catalog.objects.get(code=slug)
+        return section
