@@ -5,7 +5,7 @@
         <ul class="dropdown mega_dropdown">
             {% for node in tree %}
                 <li>
-                    <a class="mega__title" href="#">{{ node.title }}</a>
+                    <a class="mega__title" href="/catalog/{{ node.code }}">{{ node.title }}</a>
                     {% for child in node.child %}
                        <ul class="mega__item">
                             <li><a href="#">{{ child.title }}</a></li>
