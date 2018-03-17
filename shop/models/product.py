@@ -127,6 +127,9 @@ class ProductToCatalog(models.Model):
     catalog = models.ForeignKey("Catalog", on_delete=models.SET_NULL, null=True)
     is_delete = models.BooleanField(default=False, blank=True)
 
+    def __str__(self):
+        return "кат. {} товар #{}-{}".format(self.catalog.title,self.product.pk, self.product.title)
+
     class Meta:
         verbose_name = 'Товар в каталог'
         verbose_name_plural = 'Привязки товаров к каталогам'
