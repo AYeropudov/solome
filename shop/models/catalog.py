@@ -17,6 +17,7 @@ class Catalog(MPTTModel):
     has_sub_cat = models.BooleanField(default=False, blank=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True, on_delete=models.SET_NULL)
     is_delete = models.BooleanField(default=False, blank=True)
+    sort_position = models.SmallIntegerField(default=0, blank=True)
 
     class MPTTMeta:
         order_insertion_by = ['title']
@@ -29,6 +30,7 @@ class Catalog(MPTTModel):
     class Meta:
         verbose_name = 'Товарная Категория'
         verbose_name_plural = 'Товарные Категории'
+        ordering = ['sort_position']
 
 
 class CatalogTag(models.Model):
