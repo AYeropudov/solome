@@ -1,7 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from django.views import View
 
 
 class ItemView(View):
-    def get(self, request):
-        return HttpResponse("Hello, world. You're at the ItemView.")
+
+    @staticmethod
+    def get(request, item_code):
+        return render(request, 'detail-product.html', {"product": None, 'title': item_code})

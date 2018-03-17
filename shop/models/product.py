@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill, SmartResize, ResizeToFit
+from imagekit.processors import ResizeToFill, SmartResize, ResizeToFit, ResizeToCover
 
 
 def upload_to(instance, filename):
@@ -27,7 +27,7 @@ class Product(models.Model):
     title = models.CharField(max_length=300, db_index=True)
     description = models.TextField()
     is_featured = models.BooleanField(default=True, blank=True)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default= 0.00)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     created_at = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False, blank=True)
 
@@ -43,7 +43,7 @@ class Product(models.Model):
 
 class ProductVariant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, db_index=True)
-    override_price = models.DecimalField(blank=True, max_digits=12, decimal_places=2, default= 0.00)
+    override_price = models.DecimalField(blank=True, max_digits=12, decimal_places=2, default=0.00)
     sku = models.CharField(max_length=300, db_index=True)
     is_delete = models.BooleanField(default=False, blank=True)
     is_featured = models.BooleanField(default=False, blank=True)
@@ -65,9 +65,15 @@ class ProductImage(models.Model):
                           format='PNG',
                           options={'quality': 60})
     thumbnail = ImageSpecField(source='link',
-                               processors=[ResizeToFit(270, 372)],
+                               processors=[ResizeToCover(width=370, height=370)],
                                format='PNG',
                                options={'quality': 60})
+
+    x600 = ImageSpecField(source='link',
+                          processors=[ResizeToCover(width=600, height=600)],
+                          format='PNG',
+                          options={'quality': 60})
+
     paging = ImageSpecField(source='link',
                             processors=[ResizeToFit(147, 143)],
                             format='PNG',
@@ -136,9 +142,12 @@ class AttributeForProduct(models.Model):
 
 
 class ProductAttributes(models.Model):
-    attribute = models.ForeignKey(AttributeForProduct, on_delete=models.DO_NOTHING, default=None, null=True, db_index=True)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, blank=True, default=None, null=True, db_index=True)
-    product_variant = models.ForeignKey(ProductVariant, on_delete=models.DO_NOTHING, blank=True, default=None, null=True, db_index=True)
+    attribute = models.ForeignKey(AttributeForProduct, on_delete=models.DO_NOTHING, default=None, null=True,
+                                  db_index=True)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, blank=True, default=None, null=True,
+                                db_index=True)
+    product_variant = models.ForeignKey(ProductVariant, on_delete=models.DO_NOTHING, blank=True, default=None,
+                                        null=True, db_index=True)
     value = models.CharField(max_length=300, default='n/a', blank=True)
     is_delete = models.BooleanField(default=False, blank=True)
 
@@ -146,4 +155,3 @@ class ProductAttributes(models.Model):
 class ProductTag(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, db_index=True, null=True)
     tag = models.ForeignKey('Tag', on_delete=models.SET_NULL, db_index=True, null=True)
-

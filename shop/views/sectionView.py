@@ -1,16 +1,18 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 from shop.adapters import CatalogAdapter
+from shop.Exceprions import CatalogDoesNotExist
+
 
 class SectionView(View):
-    def get(self, request, section_code):
+    @staticmethod
+    def get(request, section_code):
         try:
             section = CatalogAdapter.get_section_by_slug(section_code)
             section_title = section.title
-        except:
+        except CatalogDoesNotExist:
             section_title = 'Нету такого...'
-            section= None
+            section = None
 
         breadcrumbs = [
             {
@@ -30,6 +32,7 @@ class SectionView(View):
         return render(
             request=request,
             template_name='section.html',
-            context={"is_breadcrumbs": True, "breadcrumbs": breadcrumbs}
+            context={"is_breadcrumbs": True, "breadcrumbs": breadcrumbs, "section": section}
         )
-        # return HttpResponse("Hello, world. You're at the CatalogView.")
+
+

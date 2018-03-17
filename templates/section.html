@@ -88,137 +88,65 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="shop__grid__view__wrap another-product-style">
+                        {% with  section.producttocatalog_set.all as products %}
+                            <div class="shop__grid__view__wrap another-product-style">
                             <!-- Start Single View -->
                             <div role="tabpanel" id="grid-view"
                                  class="single-grid-view tab-pane fade in active clearfix">
-                                <!-- Start Single Product -->
-                                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                                    <div class="product">
-                                        <div class="product__inner">
-                                            <div class="pro__thumb">
-                                                <a href="#">
-                                                    <img src="{% static "images/product/1.png" %}" alt="product images">
-                                                </a>
+                                {% for product in products %}
+                                    <!-- Start Single Product -->
+                                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                                        <div class="product">
+                                            <div class="product__inner">
+                                                <div class="pro__thumb">
+                                                    <a href="#">
+                                                        <img src="{{ product.product.productimage_set.all.0.thumbnail.url }}"
+                                                             alt="{{ product.product.title }}">
+                                                    </a>
+                                                </div>
+                                                <div class="product__hover__info">
+                                                    <ul class="product__action">
+                                                        <li><a data-toggle="modal" data-target="#productModal{{ product.product.code }}"
+                                                               title="Быстрый просмотр"
+                                                               class="quick-view modal-view detail-link"
+                                                               href="#"><span class="ti-eye"></span></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <div class="product__hover__info">
-                                                <ul class="product__action">
-                                                    <li><a data-toggle="modal" data-target="#productModal"
-                                                           title="Quick View" class="quick-view modal-view detail-link"
-                                                           href="#"><span class="ti-eye"></span></a></li>
-                                                </ul>
+                                            <div class="product__details">
+                                                <h2><a href="product-details.html">{{ product.product.title }}</a>
+                                                </h2>
                                             </div>
-                                        </div>
-                                        <div class="product__details">
-                                            <h2><a href="product-details.html">Какое-то название</a></h2>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- End Single Product -->
-                                <!-- Start Single Product -->
-                                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                                    <div class="product">
-                                        <div class="product__inner">
-                                            <div class="pro__thumb">
-                                                <a href="#">
-                                                    <img src="{% static "images/product/2.png" %}" alt="product images">
-                                                </a>
-                                            </div>
-                                            <div class="product__hover__info">
-                                                <ul class="product__action">
-                                                    <li><a data-toggle="modal" data-target="#productModal"
-                                                           title="Quick View" class="quick-view modal-view detail-link"
-                                                           href="#"><span class="ti-eye"></span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__details">
-                                            <h2><a href="product-details.html">Какое-то название1</a></h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product -->
-                                <!-- Start Single Product -->
-                                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                                    <div class="product">
-                                        <div class="product__inner">
-                                            <div class="pro__thumb">
-                                                <a href="#">
-                                                    <img src="{% static "images/product/2.png" %}" alt="product images">
-                                                </a>
-                                            </div>
-                                            <div class="product__hover__info">
-                                                <ul class="product__action">
-                                                    <li><a data-toggle="modal" data-target="#productModal"
-                                                           title="Quick View" class="quick-view modal-view detail-link"
-                                                           href="#"><span class="ti-eye"></span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__details">
-                                            <h2><a href="product-details.html">Какое-то название2</a></h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product -->
+                                    <!-- End Single Product -->
+                                {% endfor %}
                             </div>
-                            <!-- End Single View -->
                             <!-- Start Single View -->
                             <div role="tabpanel" id="list-view" class="single-grid-view tab-pane fade clearfix">
-                                <!-- Start List Content-->
-                                <div class="single__list__content clearfix">
-                                    <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                                        <div class="list__thumb">
-                                            <a href="product-details.html">
-                                                <img src="{% static "images/product/1.png" %}" alt="list images">
-                                            </a>
+                                {% for product in products %}
+                                    <!-- Start List Content-->
+                                    <div class="single__list__content clearfix">
+                                        <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
+                                            <div class="list__thumb">
+                                                <a href="product-details.html">
+                                                    <img src="{{ product.product.productimage_set.all.0.thumbnail.url }}"
+                                                         alt="{{ product.product.title }}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
+                                            <div class="list__details__inner">
+                                                <h2><a href="product-details.html">{{ product.product.title }}</a></h2>
+                                                <p>{{ product.product.description|truncatechars:300 }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
-                                        <div class="list__details__inner">
-                                            <h2><a href="product-details.html">Какое-то название1</a></h2>
-                                            <p>Описание краткое</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End List Content-->
-                                <!-- Start List Content-->
-                                <div class="single__list__content clearfix">
-                                    <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                                        <div class="list__thumb">
-                                            <a href="product-details.html">
-                                                <img src="{% static "images/product/1.png" %}" alt="list images">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
-                                        <div class="list__details__inner">
-                                            <h2><a href="product-details.html">Какое-то название2</a></h2>
-                                            <p>Описание краткое</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End List Content-->
-                                <!-- Start List Content-->
-                                <div class="single__list__content clearfix">
-                                    <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                                        <div class="list__thumb">
-                                            <a href="product-details.html">
-                                                <img src="{% static "images/product/1.png" %}" alt="list images">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12">
-                                        <div class="list__details__inner">
-                                            <h2><a href="product-details.html">Какое-то название3</a></h2>
-                                            <p>Описание краткое</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End List Content-->
-
+                                    <!-- End List Content-->
+                                {% endfor %}
                             </div>
                             <!-- End Single View -->
+                        {% endwith %}
                         </div>
                     </div>
                 </div>
@@ -226,4 +154,86 @@
         </div>
     </section>
     <!-- End Our ShopSide Area -->
+        <!-- QUICKVIEW PRODUCT -->
+    <div id="quickview-wrapper">
+    {% with  section.producttocatalog_set.all as products %}
+        {% for product in products %}
+        <div class="modal fade" id="productModal{{ product.product.code }}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal__container" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-product">
+                            <!-- Start product images -->
+                            <div class="product-images">
+                                <div class="main-image images">
+                                    <img alt="{{ product.product.title }}" src="{{ product.product.productimage_set.all.0.x600.url }}">
+                                </div>
+                            </div>
+                            <!-- end product images -->
+                            <div class="product-info">
+                                <h1>{{ product.product.title }}</h1>
+                                <div class="rating__and__review">
+                                    <ul class="rating">
+                                        <li><span class="ti-star"></span></li>
+                                        <li><span class="ti-star"></span></li>
+                                        <li><span class="ti-star"></span></li>
+                                        <li><span class="ti-star"></span></li>
+                                        <li><span class="ti-star"></span></li>
+                                    </ul>
+                                    <div class="review">
+                                        <a href="#">4 просмотра</a>
+                                    </div>
+                                </div>
+                                <div class="quick-desc">
+                                    {{ product.product.description }}
+                                </div>
+                                <div class="select__color">
+                                    <h2>Варианты</h2>
+                                    <ul class="color__list">
+                                        <li class="red"><a title="Red" href="#">Red</a></li>
+                                        <li class="gold"><a title="Gold" href="#">Gold</a></li>
+                                        <li class="orange"><a title="Orange" href="#">Orange</a></li>
+                                        <li class="orange"><a title="Orange" href="#">Orange</a></li>
+                                    </ul>
+                                </div>
+                                <div class="select__size">
+                                    <h2>Размеры</h2>
+                                    <ul class="color__list">
+                                        <li class="l__size"><a title="L" href="#">L</a></li>
+                                        <li class="m__size"><a title="M" href="#">M</a></li>
+                                        <li class="s__size"><a title="S" href="#">S</a></li>
+                                        <li class="xl__size"><a title="XL" href="#">XL</a></li>
+                                        <li class="xxl__size"><a title="XXL" href="#">XXL</a></li>
+                                    </ul>
+                                </div>
+                                <div class="social-sharing">
+                                    <div class="widget widget_socialsharing_widget">
+                                        <h3 class="widget-title-modal">Поделиться</h3>
+                                        <ul class="social-icons">
+                                            <li><a target="_blank" title="rss" href="#" class="rss social-icon"><i class="zmdi zmdi-rss"></i></a></li>
+                                            <li><a target="_blank" title="Linkedin" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                            <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
+                                            <li><a target="_blank" title="Tumblr" href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
+                                            <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .product-info -->
+                        </div>
+                        <!-- .modal-product -->
+                    </div>
+                    <!-- .modal-body -->
+                </div>
+                <!-- .modal-content -->
+            </div>
+            <!-- .modal-dialog -->
+        </div>
+        {% endfor %}
+    {% endwith %}
+    </div>
+    <!-- END QUICKVIEW PRODUCT -->
 {% endblock %}
