@@ -33,7 +33,7 @@ class Product(models.Model):
 
     def __str__(self):
         if self.product_class.has_variants:
-            return "{}, цена - {}, ВАРИАНТНЫЙ".format(self.title, self.price)
+            return "#{} - {}, цена - {}, ВАРИАНТНЫЙ".format(self.pk, self.title, self.price)
         return "{}, цена - {}".format(self.title, self.price)
 
     class Meta:
@@ -49,7 +49,7 @@ class ProductVariant(models.Model):
     is_featured = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
-        return "{} - {} , цена {}".format(self.product.title, self.sku, self.override_price)
+        return "#{}#{} - {} - {} , цена {}".format(self.product.pk, self.pk, self.product.title, self.sku, self.override_price)
 
     class Meta:
         verbose_name = 'Разновидность товара'
@@ -81,7 +81,7 @@ class ProductImage(models.Model):
     is_delete = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
-        return self.product.title
+        return "{} - {}".format(self.product.pk, self.product.title)
 
     class Meta:
         verbose_name = 'Изображение товара'
@@ -107,7 +107,7 @@ class VariantImage(models.Model):
     is_delete = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
-        return self.product.product.title
+        return "{} - {}".format(self.product.pk, self.product.title)
 
     class Meta:
         verbose_name = 'Изображение варианта товара'
