@@ -3,7 +3,7 @@ import uuid
 from django.db import models
 from imagekit.models import ImageSpecField
 from mptt.models import MPTTModel, TreeForeignKey
-from pilkit.processors import ResizeToFit, ResizeToCover
+from pilkit.processors import ResizeToFit, ResizeToCover, ResizeToFill
 
 
 def upload_to(instance, filename):
@@ -45,7 +45,7 @@ class CatalogImage(models.Model):
                           format='PNG',
                           options={'quality': 60})
     thumbnail = ImageSpecField(source='link',
-                               processors=[ResizeToCover(width=370, height=370)],
+                               processors=[ResizeToFill(width=370, height=370)],
                                format='PNG',
                                options={'quality': 60})
     is_delete = models.BooleanField(default=False, blank=True)
