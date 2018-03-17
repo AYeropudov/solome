@@ -106,7 +106,7 @@
                                                 </div>
                                                 <div class="product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a data-toggle="modal" data-target="#productModal{{ product.product.code }}"
+                                                        <li><a data-toggle="modal" data-target="#productModal{{ product.product.pk }}"
                                                                title="Быстрый просмотр"
                                                                class="quick-view modal-view detail-link"
                                                                href="#"><span class="ti-eye"></span></a></li>
@@ -158,7 +158,7 @@
     <div id="quickview-wrapper">
     {% with  section.producttocatalog_set.all as products %}
         {% for product in products %}
-        <div class="modal fade" id="productModal{{ product.product.code }}" tabindex="-1" role="dialog">
+        <div class="modal fade" id="productModal{{ product.product.pk }}" tabindex="-1" role="dialog">
             <div class="modal-dialog modal__container" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

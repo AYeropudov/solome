@@ -127,6 +127,10 @@ class ProductToCatalog(models.Model):
     catalog = models.ForeignKey("Catalog", on_delete=models.SET_NULL, null=True)
     is_delete = models.BooleanField(default=False, blank=True)
 
+    class Meta:
+        verbose_name = 'Товар в каталог'
+        verbose_name_plural = 'Привязки товаров к каталогам'
+
 
 class AttributeForProduct(models.Model):
     title = models.CharField(max_length=300, db_index=True)
