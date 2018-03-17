@@ -24,7 +24,7 @@ class CatalogView(View):
         return render(
             request=request,
             template_name='catalog.html',
-            context={"is_breadcrumbs": False, "breadcrumbs": breadcrumbs, "nodes": catalog_nodes}
+            context={"is_breadcrumbs": True, "breadcrumbs": breadcrumbs, "nodes": catalog_nodes}
         )
         # return HttpResponse("Hello, world. You're at the CatalogView.")
 

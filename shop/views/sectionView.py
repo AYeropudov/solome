@@ -32,7 +32,7 @@ class SectionView(View):
         return render(
             request=request,
             template_name='section.html',
-            context={"is_breadcrumbs": False, "breadcrumbs": breadcrumbs, "section": section}
+            context={"is_breadcrumbs": True, "breadcrumbs": breadcrumbs, "section": section}
         )
 
 
