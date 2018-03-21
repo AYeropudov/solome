@@ -9,7 +9,7 @@ class EnvMiddleware(object):
         # One-time configuration and initialization.
 
     def __call__(self, request):
-        if os.environ.get('DJANGO_MAINTENANCE') is '1':
+        if os.environ.get('DJANGO_MAINTENANCE') is '1' and not request.META['HTTP_HOST'].startswith('dev'):
             if request.META['PATH_INFO'] != '/maintenance':
                 return redirect(reverse('maintenance'))
 
