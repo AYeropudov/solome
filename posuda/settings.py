@@ -92,9 +92,9 @@ else:
     db = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "bellores",
-        'USER': "root",
-        "PASSWORD": "dtfbk11gh",
-        "HOST": "localhost",
+        'USER': "bellores",
+        "PASSWORD": "ZWgCG43EQT3s",
+        "HOST": "127.0.0.1",
         "PORT": "3306",
         "OPTIONS": {
 
@@ -147,4 +147,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_content'), os.path.join(BASE_DIR, 'media'),os.path.join(BASE_DIR, 'media/CACHE'))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join('media')
+
 
