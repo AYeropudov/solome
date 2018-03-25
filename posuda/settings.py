@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
+    'cms.apps.CmsConfig',
     'mptt',
     'imagekit'
 ]
@@ -148,5 +149,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_content'), os.path.join(BASE_DIR, 'media'),os.path.join(BASE_DIR, 'media/CACHE'))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join('media')
-
-

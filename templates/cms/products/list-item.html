@@ -1,0 +1,9 @@
+<tr>
+    <td><input type="checkbox" name="product[]" value="{{ product.pk }}"/></td>
+    <td>{{ product.pk }}</td>
+    <td>{{ product.title }}</td>
+    <td>{% for cat in  product.producttocatalog_set.all %}{{ cat.catalog }}, {% endfor %}</td>
+    <td><img src="{{ product.productimage_set.all.0.thumbnail.url }}"></td>
+    <td>{{ product.price }}</td>
+    <td> 1 </td>
+</tr>

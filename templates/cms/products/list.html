@@ -1,0 +1,24 @@
+{% extends 'cms/base.html' %}
+{% block content %}
+    {% include 'cms/products/tool.html' %}
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>...</th>
+            <th>#</th>
+            <th>Название</th>
+            <th>Каталог</th>
+            <th>Изображение</th>
+            <th>Цена</th>
+            <th>Доступен</th>
+        </tr>
+        </thead>
+        <tbody>
+            {%  for product in list %}
+                {% include 'cms/products/list-item.html' with product=product %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
