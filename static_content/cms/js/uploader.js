@@ -36,8 +36,9 @@ function readImage() {
             });
 
             picReader.readAsDataURL(file);
+            files[i]=file
         }
-        $("#pro-image").val('');
+        $("#pro-image").val(files);
     } else {
         console.log('Browser not support');
     }
