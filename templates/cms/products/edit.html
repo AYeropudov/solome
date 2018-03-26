@@ -1,10 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'cms/base.html' %}
 
-</body>
-</html>
+{% block content %}
+    {% include 'cms/products/tool.html' %}
+
+    <div class="table-responsive">
+        <form method="post" id="productForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="titleField">Название</label>
+                <input type="text" class="form-control" id="titleField" name="title" required value="{{ product.title }}">
+                <div class="invalid-feedback" id="feed_title"></div>
+            </div>
+            <div class="form-group">
+                <label for="catalogField">Каталог</label>
+                <select class="form-control" id="catalogField" name="catalog" required>
+                    <option value="" hidden>--------</option>
+                    {% for element in catalogs %}
+                        <option value="{{ element.pk }}" {% if catalog == element.pk %}selected{% endif %}>{{ element }}</option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback" id="feed_catalog"></div>
+            </div>
+            <div class="form-group">
+                <label for="productTypeField">Вид товара</label>
+                <select class="form-control" id="productTypeField" name="product_class" required>
+                    <option value="" hidden>--------</option>
+                    {% for pclass in product_class_list %}
+                        <option value="{{ pclass.pk }}" {% if product.product_class.pk == pclass.pk %}selected{% endif %}>{{ pclass.title }}</option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback" id="feed_product_class"></div>
+            </div>
+            <div class="form-group">
+                <label for="descriptionField">Описание</label>
+                <textarea class="form-control" id="descriptionField" rows="3" name="description">{{ product.description }}</textarea>
+                <div class="invalid-feedback" id="feed_description"></div>
+            </div>
+            <div class="form-group">
+                <label for="titlePrice">Цена</label>
+                <input type="text" class="form-control" id="titlePrice" name="price" required value="{{ product.price|slugify }}">
+                <div class="invalid-feedback" id="feed_price"></div>
+            </div>
+            <fieldset class="form-group">
+                <a href="javascript:void(0)" onclick="$('#pro-image').click()">Загрузить изображения</a>
+                <input type="file" id="pro-image" name="images" style="display: none;" class="form-control" multiple>
+            </fieldset>
+            <div class="preview-images-zone">
+                {% for image in product.productimage_set.all %}
+                    <div class="preview-image preview-show-{{ image.pk }}">
+                        <div class="image-cancel" data-no="{{ image.pk }}">x</div>
+                        <div class="image-zone"><img id="pro-img-{{ image.pk }}" src="{{ image.thumbnail.url }}"></div>
+                        <div class="tools-edit-image">
+                            <a href="javascript:void(0)" data-no="{{ image.pk }}" class="btn btn-light btn-edit-image">edit</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <button type="button" id="submit" onclick="submitProduct()">СОХРАНИТЬ</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitProduct() {
+            var data_items = new FormData($('#productForm')[0]);
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cms.product.edit' product_id=product.pk %}',
+                beforeSend: function () {
+                },
+                data: data_items,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                statusCode: {
+                    400: function (msg) {
+                        msg = msg.responseJSON;
+                        if(msg.errors){
+                            $.each(msg.errors, function (key, value) {
+                               $('[name="'+key+'"]').addClass('is-invalid');
+                               $('#feed_'+key).text(value);
+                            });
+                        }
+                    },
+                    202: function (msg) {
+                        console.debug(msg);
+                    },
+                    200: function (msg) {
+                        console.debug(msg);
+                    },
+                    500: function (msg) {
+                        console.debug(msg);
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}
