@@ -1,0 +1,43 @@
+{% extends 'cms/base.html' %}
+{% block content %}
+    {% include 'cms/products/tool.html' %}
+    <div class="container-fluid">
+        {% for root in tree %}
+            <div class="row">
+                <div class="col-md-6 border">
+                    <div class="d-inline-flex p-2">
+                        {{ root.title }}
+                    </div>
+                    <div class="d-inline-flex p-2">
+                        {% if root.img %}<img src="{{ root.img.editor.url }}">{% endif %}
+                    </div>
+                    <div class="d-inline-flex p-2 float-right">
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-success" href="">+ подкатегория</a>
+                                <a class="btn btn-sm btn-warning">Изменить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% for child in root.child %}
+                <div class="row">
+                    <div class="col-md-1 bg-dark"></div>
+                    <div class="col-md-5 border">
+                        <div class="d-inline-flex p-2">{{ child.title }}</div>
+                        <div class="d-inline-flex p-2 float-right">
+                            <div class="btn-toolbar">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-warning">Изменить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% endfor %}
+
+    </div>
+{% endblock %}

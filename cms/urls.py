@@ -4,6 +4,7 @@ from cms.views import IndexView
 from cms.views import ProductsView
 from cms.views import ProductsAddView
 from cms.views import ProductsEditView
+from cms.views import TreeView
 
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('products/', ProductsView.as_view(), name='cms.product.list'),
     path('products/add', ProductsAddView.as_view(), name='cms.product.add'),
     path('products/edit/<int:product_id>', ProductsEditView.as_view(), name='cms.product.edit'),
+    path('catalog/', TreeView.as_view(), name='cms.tree'),
 ]

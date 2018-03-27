@@ -1,6 +1,6 @@
 <tr>
-    <td><a href="{% url 'cms.product.edit' product_id=product.pk %}">EDIT</a> <input type="checkbox" name="product[]"
-                                                                                     value="{{ product.pk }}"/></td>
+    <td><a href="{% url 'cms.product.edit' product_id=product.pk %}">EDIT</a>
+        <input type="checkbox" name="product[]" value="{{ product.pk }}"/></td>
     <td>{{ product.pk }}</td>
     <td>{{ product.title }}</td>
     <td>{% for cat in  product.producttocatalog_set.all %}{{ cat.catalog }}, {% endfor %}</td>
