@@ -1,24 +1,71 @@
 {% extends 'cms/base.html' %}
+{% load static from staticfiles %}
 {% block content %}
-    {% include 'cms/products/tool.html' %}
-<div class="table-responsive">
-    <table class="table table-striped table-sm">
-        <thead>
-        <tr>
-            <th>...</th>
-            <th>#</th>
-            <th>Название</th>
-            <th>Каталог</th>
-            <th>Изображение</th>
-            <th>Цена</th>
-            <th>Доступен</th>
-        </tr>
-        </thead>
-        <tbody>
-            {%  for product in list %}
-                {% include 'cms/products/list-item.html' with product=product %}
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="header smaller lighter green">Глобальные действия</h3>
+            <p></p>
+            <a href="#" class="btn btn-success btn-app radius-4">
+                <i class="ace-icon fa fa-plus bigger-230"></i>
+                Добавить
+            </a>
+            <a href="#" class="btn btn-warning btn-app radius-4">
+                <i class="ace-icon fa fa-lock bigger-230"></i>
+                Скрыть
+            </a>
+            <a href="#" class="btn btn-danger btn-app radius-4">
+                <i class="ace-icon fa fa-remove bigger-230"></i>
+                Удалить
+            </a>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="simple-table" class="table  table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="center">
+                        <label class="pos-rel">
+                            <input type="checkbox" class="ace"/>
+                            <span class="lbl"></span>
+                        </label>
+                    </th>
+                    <th class="detail-col">Детали</th>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th class="hidden-480">Куплено</th>
+
+                    <th>
+                        <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                        Обновлено
+                    </th>
+                    <th class="hidden-480">Доступно</th>
+
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for product in list %}
+                    {% include 'cms/products/list-item-1.html' with product=product %}
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block exta_files %}
+
+    <script type="text/javascript" src="{% static "cms/assets/js/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/jquery.dataTables.bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/dataTables.buttons.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/buttons.flash.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/buttons.html5.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/buttons.print.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/buttons.colVis.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/dataTables.select.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/js/products.js" %}"></script>
+
 {% endblock %}
