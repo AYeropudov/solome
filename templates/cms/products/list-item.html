@@ -1,9 +1,28 @@
 <tr>
-    <td><input type="checkbox" name="product[]" value="{{ product.pk }}"/></td>
+    <td><a href="{% url 'cms.product.edit' product_id=product.pk %}">EDIT</a>
+        <input type="checkbox" name="product[]" value="{{ product.pk }}"/></td>
     <td>{{ product.pk }}</td>
     <td>{{ product.title }}</td>
     <td>{% for cat in  product.producttocatalog_set.all %}{{ cat.catalog }}, {% endfor %}</td>
-    <td><img src="{{ product.productimage_set.all.0.thumbnail.url }}"></td>
+    <td>
+        <div id="carousel{{ product.pk }}" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                {% for img in product.productimage_set.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img class="d-block w-100" src="{{ img.thumbnail.url }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#carousel{{ product.pk }}" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel{{ product.pk }}" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </td>
     <td>{{ product.price }}</td>
-    <td> 1 </td>
+    <td> 1</td>
 </tr>

@@ -1,2 +1,4 @@
 from .index import IndexView
-from .products import ProductsView, ProductsAddView
+from .products import ProductsView, ProductsAddView, ProductsEditView
+from .catalog import TreeView
+

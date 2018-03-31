@@ -50,6 +50,12 @@ class CatalogImage(models.Model):
                                processors=[ResizeToFill(width=370, height=370)],
                                format='PNG',
                                options={'quality': 60})
+
+    editor = ImageSpecField(source='link',
+                            processors=[ResizeToFill(width=100, height=100)],
+                            format='PNG',
+                            options={'quality': 60})
+
     is_delete = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
