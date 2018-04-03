@@ -38,9 +38,9 @@
                     <i class="ace-icon fa fa-check bigger-120"></i>
                 </button>
             {% endif %}
-            <button class="btn btn-xs btn-info" title="изменить">
+            <a href="{% url 'cms.product.edit' product_id=product.pk%}" class="btn btn-xs btn-info" title="изменить">
                 <i class="ace-icon fa fa-pencil bigger-120"></i>
-            </button>
+            </a>
 
             <button class="btn btn-xs btn-danger" title="удалить">
                 <i class="ace-icon fa fa-trash-o bigger-120"></i>

@@ -18,7 +18,7 @@ class ProductsEditView(View):
         catalogs = Catalog.objects.all()
         pclasess = ProductClass.objects.all()
         return render(request=request, template_name='cms/products/edit.html',
-                      context={"title_page": "Товары", "product": product, "catalogs": catalogs, "product_class_list": pclasess, 'catalog': catalog})
+                      context={"title": "Редактор > {}".format(product.title), "product": product, "catalogs": catalogs, "product_class_list": pclasess, 'catalog': catalog})
 
     def post(self, request, product_id):
         product = get_object_or_404(Product, pk=product_id)

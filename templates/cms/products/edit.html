@@ -1,14 +1,13 @@
 {% extends 'cms/base.html' %}
-
+{% load static from staticfiles %}
 {% block content %}
-    {% include 'cms/products/tool.html' %}
-
     <div class="table-responsive">
         <form method="post" id="productForm">
             {% csrf_token %}
             <div class="form-group">
                 <label for="titleField">Название</label>
-                <input type="text" class="form-control" id="titleField" name="title" required value="{{ product.title }}">
+                <input type="text" class="form-control" id="titleField" name="title" required
+                       value="{{ product.title }}">
                 <div class="invalid-feedback" id="feed_title"></div>
             </div>
             <div class="form-group">
@@ -16,7 +15,8 @@
                 <select class="form-control" id="catalogField" name="catalog" required>
                     <option value="" hidden>--------</option>
                     {% for element in catalogs %}
-                        <option value="{{ element.pk }}" {% if catalog == element.pk %}selected{% endif %}>{{ element }}</option>
+                        <option value="{{ element.pk }}"
+                                {% if catalog == element.pk %}selected{% endif %}>{{ element }}</option>
                     {% endfor %}
                 </select>
                 <div class="invalid-feedback" id="feed_catalog"></div>
@@ -26,35 +26,93 @@
                 <select class="form-control" id="productTypeField" name="product_class" required>
                     <option value="" hidden>--------</option>
                     {% for pclass in product_class_list %}
-                        <option value="{{ pclass.pk }}" {% if product.product_class.pk == pclass.pk %}selected{% endif %}>{{ pclass.title }}</option>
+                        <option value="{{ pclass.pk }}"
+                                {% if product.product_class.pk == pclass.pk %}selected{% endif %}>{{ pclass.title }}</option>
                     {% endfor %}
                 </select>
                 <div class="invalid-feedback" id="feed_product_class"></div>
             </div>
             <div class="form-group">
                 <label for="descriptionField">Описание</label>
-                <textarea class="form-control" id="descriptionField" rows="3" name="description">{{ product.description }}</textarea>
+                <textarea class="form-control" id="descriptionField" rows="3"
+                          name="description">{{ product.description }}</textarea>
                 <div class="invalid-feedback" id="feed_description"></div>
             </div>
             <div class="form-group">
                 <label for="titlePrice">Цена</label>
-                <input type="text" class="form-control" id="titlePrice" name="price" required value="{{ product.price|slugify }}">
+                <input type="text" class="form-control" id="titlePrice" name="price" required
+                       value="{{ product.price|slugify }}">
                 <div class="invalid-feedback" id="feed_price"></div>
             </div>
-            <fieldset class="form-group">
-                <a href="javascript:void(0)" onclick="$('#pro-image').click()">Загрузить изображения</a>
-                <input type="file" id="pro-image" name="images" style="display: none;" class="form-control" multiple>
-            </fieldset>
-            <div class="preview-images-zone">
-                {% for image in product.productimage_set.all %}
-                    <div class="preview-image preview-show-{{ image.pk }}">
-                        <div class="image-cancel" data-no="{{ image.pk }}">x</div>
-                        <div class="image-zone"><img id="pro-img-{{ image.pk }}" src="{{ image.thumbnail.url }}"></div>
-                        <div class="tools-edit-image">
-                            <a href="javascript:void(0)" data-no="{{ image.pk }}" class="btn btn-light btn-edit-image">edit</a>
+            <div class="form-group">
+                <div>
+                    <ul class="ace-thumbnails clearfix">
+                        {% for image in product.productimage_set.all %}
+                            <li>
+                                <a href="{{ image.x600.url }}" data-rel="colorbox">
+                                    <img width="220" height="220" alt="220x220" src="{{ image.thumbnail.url }}"/>
+                                </a>
+                                <div class="tools">
+                                    <a href="{{ image.full.url }}" target="_blank">
+                                        <i class="ace-icon fa fa-link"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="ace-icon fa fa-times red"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div id="dropzone" class="dropzone well dz-clickable"></div>
+            </div>
+            <div class="form-group">
+                <div class="fallback">
+                    <input name="images" type="file" multiple/>
+                </div>
+            </div>
+            <div id="preview-template" class="hide">
+                <div class="dz-preview dz-file-preview">
+                    <div class="dz-image">
+                        <img data-dz-thumbnail=""/>
+                    </div>
+
+                    <div class="dz-details">
+                        <div class="dz-size">
+                            <span data-dz-size=""></span>
+                        </div>
+
+                        <div class="dz-filename">
+                            <span data-dz-name=""></span>
                         </div>
                     </div>
-                {% endfor %}
+
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress=""></span>
+                    </div>
+
+                    <div class="dz-error-message">
+                        <span data-dz-errormessage=""></span>
+                    </div>
+
+                    <div class="dz-success-mark">
+											<span class="fa-stack fa-lg bigger-150">
+												<i class="fa fa-circle fa-stack-2x white"></i>
+
+												<i class="fa fa-check fa-stack-1x fa-inverse green"></i>
+											</span>
+                    </div>
+
+                    <div class="dz-error-mark">
+											<span class="fa-stack fa-lg bigger-150">
+												<i class="fa fa-circle fa-stack-2x white"></i>
+
+												<i class="fa fa-remove fa-stack-1x fa-inverse red"></i>
+											</span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <button type="button" id="submit" onclick="submitProduct()">СОХРАНИТЬ</button>
@@ -65,6 +123,19 @@
     <script>
         function submitProduct() {
             var data_items = new FormData($('#productForm')[0]);
+            data_items.delete('images');
+            if (window.File && window.FileList && window.FileReader) {
+                {
+                    try {
+                        var files = myDropzone.getAcceptedFiles();
+                        $.each(files, function (index, value) {
+                            data_items.append('images', value);
+                        });
+                    } catch (e) {
+
+                    }
+                }
+            }
             $.ajax({
                 type: 'POST',
                 url: '{% url 'cms.product.edit' product_id=product.pk %}',
@@ -77,10 +148,10 @@
                 statusCode: {
                     400: function (msg) {
                         msg = msg.responseJSON;
-                        if(msg.errors){
+                        if (msg.errors) {
                             $.each(msg.errors, function (key, value) {
-                               $('[name="'+key+'"]').addClass('is-invalid');
-                               $('#feed_'+key).text(value);
+                                $('[name="' + key + '"]').addClass('is-invalid');
+                                $('#feed_' + key).text(value);
                             });
                         }
                     },
@@ -97,4 +168,11 @@
             });
         }
     </script>
+    <link rel="stylesheet" href="{% static "cms/assets/css/dropzone.min.css" %}"/>
+{% endblock %}
+{% block exta_files %}
+    <link rel="stylesheet" href="{% static "cms/assets/css/colorbox.min.css" %}"/>
+    <script src="{% static "cms/assets/js/dropzone.min.js" %}"></script>
+    <script src="{% static "cms/assets/js/jquery.colorbox.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/js/product.js" %}"></script>
 {% endblock %}
