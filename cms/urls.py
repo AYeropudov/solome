@@ -13,6 +13,6 @@ urlpatterns = [
     path('products/add', ProductsAddView.as_view(), name='cms.product.add'),
     path('products/edit/<int:product_id>', ProductsEditView.as_view(), name='cms.product.edit'),
     path('catalog/<int:cat_id>', TreeView.as_view(), name='cms.tree'),
-    # path('catalog/', TreeView.as_view(), name='cms.tree.put'),
+    path('catalog/', TreeView.as_view(), name='cms.tree'),
     path('catalog/m/<str:type_modal>', CatalogsModals.as_view(), name='cms.tree.modal'),
 ]

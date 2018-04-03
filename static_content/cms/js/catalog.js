@@ -9,6 +9,10 @@ var catalogObject = function () {
         $(".add-subcat-btn").bind("click", function (e) {
             _this.addSubCatalogItem(e);
         });
+        $(".add-root").bind("click", function (e) {
+            _this.addRoot(e);
+        });
+
     };
 
     this.nestListInit = function () {
@@ -33,12 +37,24 @@ var catalogObject = function () {
         });
 
         _this.dialog.init(function (){
+            var whitelist_ext = ["jpeg", "jpg", "png", "gif" , "bmp"];
+            var whitelist_mime = ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp"];
             _this.doRequest(
                 '/cms/catalog/m/' + typeModal,
                 data,
                 {method:"GET", dataType:"html"},
                 function (result) {
                     _this.dialog.find('.bootbox-body').html(result);
+                    $('input[type=file]').ace_file_input({
+					style:'well',
+					btn_choose:'Drop files here or click to choose',
+					btn_change:null,
+					no_icon:'ace-icon fa fa-cloud-upload',
+					droppable:true,
+					thumbnail:'large',
+                    allowExt: whitelist_ext,
+                    allowMime: whitelist_mime
+				})
                 }
                 );
         });
@@ -54,8 +70,9 @@ var catalogObject = function () {
         this.createModal('Добавить подкатегорию', 'createSubCat', {catId:target.data("id")})
     };
 
-    this.getContent = function (url) {
-        return 'I was loaded after the dialog was shown!';
+    this.addRoot = function (e) {
+        var target = $(e.currentTarget);
+        this.createModal('Добавить категорию', 'createRoot', {})
     };
 
     this.doRequest = function (url, data, options, someCall) {
@@ -79,15 +96,19 @@ var catalogObject = function () {
 function submitForm(e) {
     var button = $(e);
     var form = $("#"+ button.data("form"));
-    var data = form.serializeArray();
+    var data = new FormData(form[0]);
     $.ajax({
             method: form.data("method"),
             dataType: 'json',
             data: data,
+            processData: false,
+            contentType: false,
+            beforeSend: function(xhr) {xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val());},
             url: form.data("action")
         })
             .done(function (msg) {
-               console.log(msg);
+               catalogApplication.dialog.modal('hide');
+               window.location.reload();
             })
             .error(function (msg) {
                 console.log(msg);
