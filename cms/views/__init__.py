@@ -1,4 +1,4 @@
 from .index import IndexView
 from .products import ProductsView, ProductsAddView, ProductsEditView
-from .catalog import TreeView
+from .catalog import TreeView, CatalogsModals
 

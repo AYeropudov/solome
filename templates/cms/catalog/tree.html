@@ -16,52 +16,54 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6">
-            <div class="dd dd-draghandle" id="nestable">
-                <ol class="dd-list">
-                    {% for root in tree %}
-                        <li class="dd-item dd2-item" data-id="{{ root.pk }}">
-                            <div class="dd-handle dd2-handle">
-                                <i class="normal-icon ace-icon fa fa-arrows bigger-130"></i>
-                                <i class="drag-icon ace-icon blue fa fa-arrows bigger-125"></i>
+    <div class="col-sm-6">s
+        <div class="dd dd-draghandle" id="nestable">
+            <ol class="dd-list">
+                {% for root in tree %}
+                    <li class="dd-item dd2-item" data-id="{{ root.pk }}">
+                        <div class="dd-handle dd2-handle">
+                            <i class="normal-icon ace-icon fa fa-arrows bigger-130"></i>
+                            <i class="drag-icon ace-icon blue fa fa-arrows bigger-125"></i>
+                        </div>
+                        <div class="dd2-content">
+                            {{ root.title }}
+                            <div class="pull-right action-buttons">
+                                <a class="blue edit-cat-btn" href="#" data-id="{{ root.pk }}">
+                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                </a>
+                                <a class="green add-subcat-btn" href="#" data-id="{{ root.pk }}">
+                                    <i class="ace-icon fa fa-plus-circle bigger-130"></i>
+                                </a>
                             </div>
-                            <div class="dd2-content">
-                                {{ root.title }}
-                                <div class="pull-right action-buttons">
-                                    <a class="blue" href="#" onclick="editCatalogItem(this)" data-id="{{ root.id }}">
-                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                    </a>
-
-                                    <a class="green" href="#" onclick="addSubCatalogItem(this)" data-id="{{ root.id }}">
-                                        <i class="ace-icon fa fa-plus-circle bigger-130"></i>
-                                    </a>
-
-                                </div>
-                            </div>
-                            {% if root.child %}
-                                <ol class="dd-list">
-                                    {% for child in root.child %}
-                                        <li class="dd-item" data-id="{{ child.pk }}">
-                                            <div class="dd-handle">
-                                                {{ child.title }}
-                                                <div class="pull-right action-buttons">
-                                                    <a class="blue" href="#" onclick="editCatalogItem(this)" data-id="{{ child.id }}">
-                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                    </a>
-                                                </div>
+                        </div>
+                        {% if root.child %}
+                            <ol class="dd-list">
+                                {% for child in root.child %}
+                                    <li class="dd-item dd2-item" data-id="{{ child.pk }}">
+                                        <div class="dd-handle dd2-handle">
+                                            <i class="normal-icon ace-icon fa fa-arrows bigger-130"></i>
+                                            <i class="drag-icon ace-icon blue fa fa-arrows bigger-125"></i>
+                                        </div>
+                                        <div class="dd2-content">
+                                            {{ child.title }}
+                                            <div class="pull-right action-buttons">
+                                                <a class="blue edit-cat-btn" href="#" data-id="{{ child.pk }}">
+                                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                </a>
                                             </div>
-                                        </li>
-                                    {% endfor %}
-                                </ol>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ol>
-            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ol>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ol>
         </div>
-        <!-- inline scripts related to this page -->
+    </div>
+    <!-- inline scripts related to this page -->
 {% endblock %}
-{%  block exta_files %}
+{% block exta_files %}
     <script type="text/javascript" src="{% static "cms/assets/js/jquery.nestable.min.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/js/catalog.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/assets/js/bootbox.js" %}"></script>
