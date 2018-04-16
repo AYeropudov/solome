@@ -11,7 +11,7 @@ class SectionView(View):
             section = CatalogAdapter.get_section_by_slug(section_code)
             section_title = section.title
         except CatalogDoesNotExist:
-            section_title = 'Нету такого...'
+            section_title = 'К сожалению, ничего не найдено по вашему запросуы...'
             section = None
 
         breadcrumbs = [
@@ -25,7 +25,7 @@ class SectionView(View):
             },
             {
                 "uri": "#",
-                "title": "Какая-то категория " + section_title
+                "title": section_title
             }
         ]
 
