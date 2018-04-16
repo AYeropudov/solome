@@ -172,7 +172,7 @@
                                     <div class="product-images">
                                         <div class="main-image images">
                                             <!-- Start Slider Area -->
-                                                <div class="owl-carousel owl-theme">
+                                                <div class="owl-carousel owl-theme preview-box">
                                                     {% for image in product.product.productimage_set.all %}
                                                         <!-- Start Single Slide -->
                                                         <div>
@@ -257,4 +257,11 @@
         {% endwith %}
     </div>
     <!-- END QUICKVIEW PRODUCT -->
+{% endblock %}
+{% block extend_script %}
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.preview-box').owlCarousel({items: 1, loop: true, center: true});
+    });
+    </script>
 {% endblock %}
