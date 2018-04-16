@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from shop.adapters import CatalogAdapter
 
+
 class CatalogView(View):
     def get(self, request):
 
