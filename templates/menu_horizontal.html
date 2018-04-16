@@ -8,7 +8,7 @@
                     <a class="mega__title" href="/catalog/{{ node.code }}">{{ node.title }}</a>
                     {% for child in node.child %}
                        <ul class="mega__item">
-                            <li><a href="#">{{ child.title }}</a></li>
+                            <li><a href="/catalog/{{ child.code }}">{{ child.title }}</a></li>
                         </ul>
                     {% endfor %}
                 </li>
