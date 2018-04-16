@@ -187,20 +187,20 @@
                                     <!-- end product images -->
                                     <div class="product-info">
                                         <h1>{{ product.product.title }}</h1>
-                                        <div class="rating__and__review">
-                                            <ul class="rating">
-                                                <li><span class="ti-star"></span></li>
-                                                <li><span class="ti-star"></span></li>
-                                                <li><span class="ti-star"></span></li>
-                                                <li><span class="ti-star"></span></li>
-                                                <li><span class="ti-star"></span></li>
-                                            </ul>
-                                            <div class="review">
-                                                <a href="#">4 просмотра</a>
-                                            </div>
-                                        </div>
+{#                                        <div class="rating__and__review">#}
+{#                                            <ul class="rating">#}
+{#                                                <li><span class="ti-star"></span></li>#}
+{#                                                <li><span class="ti-star"></span></li>#}
+{#                                                <li><span class="ti-star"></span></li>#}
+{#                                                <li><span class="ti-star"></span></li>#}
+{#                                                <li><span class="ti-star"></span></li>#}
+{#                                            </ul>#}
+{#                                            <div class="review">#}
+{#                                                <a href="#">4 просмотра</a>#}
+{#                                            </div>#}
+{#                                        </div>#}
                                         <div class="quick-desc">
-                                            {{ product.product.description }}
+                                            {{ product.product.description |truncatechars:450}}
                                         </div>
                                         <div class="select__color">
                                             <h2>Варианты</h2>
