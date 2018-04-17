@@ -8,10 +8,10 @@ from cms.adapters.exceptions import ProductException
 
 class ProductsAddView(View):
     def get(self, request):
-        product = None
+        product =  Product()
         catalogs = Catalog.objects.all()
         pclasess = ProductClass.objects.all()
-        return render(request=request, template_name='cms/products/add.html',
+        return render(request=request, template_name='cms/products/edit.html',
                       context={"title_page": "Товары", "product": product, "catalogs": catalogs, "product_class_list": pclasess})
 
     def post(self, request):

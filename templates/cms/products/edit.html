@@ -138,7 +138,7 @@
             }
             $.ajax({
                 type: 'POST',
-                url: '{% url 'cms.product.edit' product_id=product.pk %}',
+                url: '{% if product.pk %}{% url 'cms.product.edit' product_id=product.pk %}{% else %}{% url 'cms.product.add' %}{% endif %}',
                 beforeSend: function () {
                 },
                 data: data_items,
@@ -159,7 +159,7 @@
                         console.debug(msg);
                     },
                     200: function (msg) {
-                        window.location.reload();
+                        {% if product.pk %} window.location.reload(){% else %}window.location = '{% url 'cms.product.list' %}'{% endif %};
                     },
                     500: function (msg) {
                         console.debug(msg);
