@@ -11,4 +11,5 @@ urlpatterns = [
     path('catalog/<str:section_code>', views.SectionView.as_view(), name='section'),
     path('info', views.InfoView.as_view(), name='info'),
     path('item/<str:item_code>', views.ItemView.as_view(), name='item'),
+    path('quick/<str:p_code>', views.QuickViewProduct.as_view(), name='quickitem'),
 ]

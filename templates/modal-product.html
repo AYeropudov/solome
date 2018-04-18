@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="modal-product">
+        <!-- Start product images -->
+        <div class="product-images">
+            <div class="main-image images">
+                <div id="carousel-{{ product.pk }}" class="carousel slide" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        {% for img in product.productimage_set.all %}
+                            <div class="item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ img.thumbnail.url }}" alt="...">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-{{ product.pk }}" role="button"
+                       data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-{{ product.pk }}" role="button"
+                       data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end product images -->
+        <div class="product-info">
+            <h1>{{ product.title }}</h1>
+            <div class="quick-desc">
+                {{ product.description |truncatechars:450 }}
+            </div>
+            <div class="select__color">
+                <h2>Варианты</h2>
+                <ul class="color__list">
+                    <li class="red"><a title="Red" href="#">Red</a></li>
+                    <li class="gold"><a title="Gold" href="#">Gold</a></li>
+                    <li class="orange"><a title="Orange" href="#">Orange</a></li>
+                    <li class="orange"><a title="Orange" href="#">Orange</a></li>
+                </ul>
+            </div>
+            <div class="select__size">
+                <h2>Размеры</h2>
+                <ul class="color__list">
+                    <li class="l__size"><a title="L" href="#">L</a></li>
+                    <li class="m__size"><a title="M" href="#">M</a></li>
+                    <li class="s__size"><a title="S" href="#">S</a></li>
+                    <li class="xl__size"><a title="XL" href="#">XL</a></li>
+                    <li class="xxl__size"><a title="XXL" href="#">XXL</a></li>
+                </ul>
+            </div>
+            <div class="social-sharing">
+                <div class="widget widget_socialsharing_widget">
+                    <h3 class="widget-title-modal">Поделиться</h3>
+                    <ul class="social-icons">
+                        <li><a target="_blank" title="rss" href="#" class="rss social-icon"><i
+                                class="zmdi zmdi-rss"></i></a></li>
+                        <li><a target="_blank" title="Linkedin" href="#"
+                               class="linkedin social-icon"><i
+                                class="zmdi zmdi-linkedin"></i></a></li>
+                        <li><a target="_blank" title="Pinterest" href="#"
+                               class="pinterest social-icon"><i
+                                class="zmdi zmdi-pinterest"></i></a></li>
+                        <li><a target="_blank" title="Tumblr" href="#"
+                               class="tumblr social-icon"><i
+                                class="zmdi zmdi-tumblr"></i></a></li>
+                        <li><a target="_blank" title="Pinterest" href="#"
+                               class="pinterest social-icon"><i
+                                class="zmdi zmdi-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .product-info -->
+    </div>
+    <!-- .modal-product -->
+</div>
