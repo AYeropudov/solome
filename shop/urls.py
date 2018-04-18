@@ -10,6 +10,6 @@ urlpatterns = [
     path('catalog', views.CatalogView.as_view(), name='catalog'),
     path('catalog/<str:section_code>', views.SectionView.as_view(), name='section'),
     path('info', views.InfoView.as_view(), name='info'),
-    path('item/<str:item_code>', views.ItemView.as_view(), name='item'),
-    path('quick/<str:p_code>', views.QuickViewProduct.as_view(), name='quickitem'),
+    path('detail/<int:item_code>', views.ItemView.as_view(), name='item.detail'),
+    path('quick/<int:p_code>', views.QuickViewProduct.as_view(), name='quickitem'),
 ]
