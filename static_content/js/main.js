@@ -1,649 +1,388 @@
-/*-----------------------------------------------------------------------------------
-
-  Template Name: Tmart-Minimalist eCommerce HTML5 Template.
-  Template URI: #
-  Description: Tmart is a unique website template designed in HTML with a simple & beautiful look. There is an excellent solution for creating clean, wonderful and trending material design corporate, corporate any other purposes websites.
-  Author: Theme365
-  Version: 1.0
-
------------------------------------------------------------------------------------*/
-
-/*-------------------------------
-[  Table of contents  ]
----------------------------------
-  01. jQuery MeanMenu
-  02. wow js active
-  03. Portfolio  Masonry (width)
-  04. Sticky Header
-  05. ScrollUp
-  06. Tooltip
-  07. ScrollReveal Js Init
-  08. Fixed Footer bottom script ( Newsletter )
-  09. Search Bar
-  10. Toogle Menu
-  11. Shopping Cart Area
-  12. Filter Area
-  13. User Menu
-  14. Overlay Close
-  15. Home Slider 
-  16. Popular Product Wrap
-  17. Testimonial Wrap
-  18. Magnific Popup  
-  19. Price Slider Active
-  20.  Plus Minus Button
-  21. jQuery scroll Nav
-
-  
-
-/*--------------------------------
-[ End table content ]
------------------------------------*/
+jQuery(document).ready(function() {
+"use strict";
 
 
-(function($) {
-    'use strict';
+/******************************************
+   Newsletter popup
+******************************************/
+
+    jQuery('#myModal').appendTo("body");
+          function show_modal(){
+            jQuery('#myModal').modal('show');
+          }
+
+            jQuery('#myModal').modal({
+            keyboard: false,
+           backdrop:false
+          }); 
+
+/******************************************
+   Featured slider
+******************************************/
+
+jQuery("#featured-slider .slider-items").owlCarousel({
+		items: 3,
+		itemsDesktop: [1024, 3],
+		itemsDesktopSmall: [900, 2],
+		itemsTablet: [640, 2],
+		itemsMobile: [390, 1],
+		navigation: !0,
+		navigationText: [ '', '' ],
+		slideSpeed: 500,
+		pagination: !1,
+		autoPlay: false
+	}),
 
 
-/*-------------------------------------------
-  01. jQuery MeanMenu
+/******************************************
+	Top sellers slider
+******************************************/
+
+	jQuery("#top-sellers-slider .slider-items").owlCarousel({
+		items: 3,
+		itemsDesktop: [1024, 3],
+		itemsDesktopSmall: [900, 2],
+		itemsTablet: [640, 2],
+		itemsMobile: [390, 1],
+		navigation: !0,
+		navigationText: [ '', '' ],
+		slideSpeed: 500,
+		pagination: !1,
+		autoPlay: false
+	}),
+
+/******************************************
+	Special products slider
+******************************************/
+
+	jQuery("#special-products-slider .slider-items").owlCarousel({
+		items: 4,
+		itemsDesktop: [1024, 4],
+		itemsDesktopSmall: [900, 3],
+		itemsTablet: [640, 2],
+		itemsMobile: [390, 1],
+		navigation: !0,
+		navigationText: ['<a class="flex-prev"></a>', '<a class="flex-next"></a>'],
+		slideSpeed: 500,
+		pagination: !1,
+		autoPlay: false
+	}),
+
+
+
+
+/******************************************
+	Our clients slider
+******************************************/
+
+	jQuery("#our-clients-slider .slider-items").owlCarousel({
+		items: 4,
+		itemsDesktop: [1024, 4],
+		itemsDesktopSmall: [900, 3],
+		itemsTablet: [640, 3],
+		itemsMobile: [480, 2],
+		navigation: false,
+		navigationText: ['<a class="flex-prev"></a>', '<a class="flex-next"></a>'],
+		slideSpeed: 500,
+		pagination: false,
+		autoPlay: true
+	}),
+
+/******************************************
+	Latest news slider
+******************************************/
+
+	jQuery("#latest-news-slider .slider-items").owlCarousel({
+		autoplay: !0,
+		items: 3,
+		itemsDesktop: [1024, 3],
+		itemsDesktopSmall: [900, 2],
+		itemsTablet: [640, 2],
+		itemsMobile: [480, 1],
+		navigation: !0,
+		navigationText: ['<a class="flex-prev"></a>', '<a class="flex-next"></a>'],
+		slideSpeed: 500,
+		pagination: !1
+	}),
+
+
+/******************************************
+	Mobile menu
+******************************************/
+
+	jQuery("#mobile-menu").mobileMenu({
+		MenuWidth: 250,
+		SlideSpeed: 300,
+		WindowsMaxWidth: 767,
+		PagePush: !0,
+		FromLeft: !0,
+		Overlay: !0,
+		CollapseMenu: !0,
+		ClassName: "mobile-menu"
+
+	}),
+
+/******************************************
+	Mega Menu
+******************************************/
+
+	jQuery('.mega-menu-title').on('click', function() {
+		if (jQuery('.mega-menu-category').is(':visible')) {
+			jQuery('.mega-menu-category').slideUp();
+		} else {
+			jQuery('.mega-menu-category').slideDown();
+		}
+	});
+
+
+jQuery('.mega-menu-category .nav > li').hover(function() {
+	jQuery(this).addClass("active");
+	jQuery(this).find('.popup').stop(true, true).fadeIn('slow');
+}, function() {
+	jQuery(this).removeClass("active");
+	jQuery(this).find('.popup').stop(true, true).fadeOut('slow');
+});
+
+
+jQuery('.mega-menu-category .nav > li.view-more').on('click', function(e) {
+	if (jQuery('.mega-menu-category .nav > li.more-menu').is(':visible')) {
+		jQuery('.mega-menu-category .nav > li.more-menu').stop().slideUp();
+		jQuery(this).find('a').text('More category');
+	} else {
+		jQuery('.mega-menu-category .nav > li.more-menu').stop().slideDown();
+		jQuery(this).find('a').text('Close menu');
+	}
+	e.preventDefault();
+});
+/******************************************
+   Category desc slider
+******************************************/
+
+jQuery("#category-desc-slider .slider-items").owlCarousel({
+	autoPlay: true,
+	items: 1, //10 items above 1000px browser width
+	itemsDesktop: [1024, 1], //5 items between 1024px and 901px
+	itemsDesktopSmall: [900, 1], // 3 items betweem 900px and 601px
+	itemsTablet: [600, 1], //2 items between 600 and 0;
+	itemsMobile: [320, 1],
+	navigation: true,
+	navigationText: ["<a class=\"flex-prev\"></a>", "<a class=\"flex-next\"></a>"],
+	slideSpeed: 500,
+	pagination: false
+});
+
+/******************************************
+   Upsell product slider
+******************************************/
+
+jQuery("#upsell-product-slider .slider-items").owlCarousel({
+		items: 4,
+		itemsDesktop: [1024, 4],
+		itemsDesktopSmall: [900, 3],
+		itemsTablet: [640, 2],
+		itemsMobile: [390, 1],
+		navigation: !0,
+		navigationText: ['<a class="flex-prev"></a>', '<a class="flex-next"></a>'],
+		slideSpeed: 500,
+		pagination: !1,
+		autoPlay: false
+	}),
+
+/******************************************
+	Related product slider
+******************************************/
+
+	jQuery("#related-product-slider .slider-items").owlCarousel({
+		items: 4,
+		itemsDesktop: [1024, 4],
+		itemsDesktopSmall: [900, 3],
+		itemsTablet: [640, 2],
+		itemsMobile: [390, 1],
+		navigation: !0,
+		navigationText: ['<a class="flex-prev"></a>', '<a class="flex-next"></a>'],
+		slideSpeed: 500,
+		pagination: !1,
+		autoPlay: true
+	}),
+
+/******************************************
+	Related posts
+******************************************/
+
+	jQuery("#related-posts .slider-items").owlCarousel({
+		items: 3,
+		itemsDesktop: [1024, 3],
+		itemsDesktopSmall: [900, 3],
+		itemsTablet: [640, 2],
+		itemsMobile: [390, 1],
+		navigation: !0,
+		navigationText: ['<a class="flex-prev"></a>', '<a class="flex-next"></a>'],
+		slideSpeed: 500,
+		pagination: !1,
+		autoPlay: true
+	}),
+
+
+/******************************************
+	testimonials slider
+******************************************/
+
+	jQuery("#testimonials-slider .slider-items").owlCarousel({
+		items: 1,
+		itemsDesktop: [1024, 1],
+		itemsDesktopSmall: [900, 1],
+		itemsTablet: [640, 1],
+		itemsMobile: [390, 1],
+		navigation: !0,
+		navigationText: ['<a class="flex-prev"></a>', '<a class="flex-next"></a>'],
+		slideSpeed: 500,
+		pagination: false,
+		autoPlay: true,
+		singleItem: true,
+        transitionStyle: "backSlide"
+	}),
+
+/******************************************
+	Home testimonials slider
+******************************************/
+
+	jQuery(".subDropdown")[0] && jQuery(".subDropdown").on("click", function() {
+		jQuery(this).toggleClass("plus"), jQuery(this).toggleClass("minus"), jQuery(this).parent().find("ul").slideToggle()
+	})
+if (jQuery('#home-testimonials-slider').length) {
+	jQuery('#home-testimonials-slider').bxSlider({
+		auto: true,
+		infiniteLoop: true,
+		hideControlOnEnd: true
+	});
+}
+
+/******************************************
+    PRICE FILTER
+******************************************/
+
+jQuery('.slider-range-price').each(function() {
+	var min = jQuery(this).data('min');
+	var max = jQuery(this).data('max');
+	var unit = jQuery(this).data('unit');
+	var value_min = jQuery(this).data('value-min');
+	var value_max = jQuery(this).data('value-max');
+	var label_reasult = jQuery(this).data('label-reasult');
+	var t = jQuery(this);
+	jQuery(this).slider({
+		range: true,
+		min: min,
+		max: max,
+		values: [value_min, value_max],
+		slide: function(event, ui) {
+			var result = label_reasult + " " + unit + ui.values[0] + ' - ' + unit + ui.values[1];
+			console.log(t);
+			t.closest('.slider-range').find('.amount-range-price').html(result);
+		}
+	});
+})
+
+/******************************************
+    Footer expander
+******************************************/
+
+jQuery(".collapsed-block .expander").on("click", function(e) {
+	var collapse_content_selector = jQuery(this).attr("href");
+	var expander = jQuery(this);
+	if (!jQuery(collapse_content_selector).hasClass("open")) expander.addClass("open").html("&minus;");
+	else expander.removeClass("open").html("+");
+	if (!jQuery(collapse_content_selector).hasClass("open")) jQuery(collapse_content_selector).addClass("open").slideDown("normal");
+	else jQuery(collapse_content_selector).removeClass("open").slideUp("normal");
+	e.preventDefault()
+});
+
+/******************************************
+    Category sidebar
+******************************************/
+
+jQuery(function() {
+	jQuery(".category-sidebar ul > li.cat-item.cat-parent > ul").hide();
+	jQuery(".category-sidebar ul > li.cat-item.cat-parent.current-cat-parent > ul").show();
+	jQuery(".category-sidebar ul > li.cat-item.cat-parent.current-cat.cat-parent > ul").show();
+	jQuery(".category-sidebar ul > li.cat-item.cat-parent").click(function() {
+		if (jQuery(this).hasClass('current-cat-parent')) {
+			var li = jQuery(this).closest('li');
+			li.find(' > ul').slideToggle('fast');
+			jQuery(this).toggleClass("close-cat");
+		} else {
+			var li = jQuery(this).closest('li');
+			li.find(' > ul').slideToggle('fast');
+			jQuery(this).toggleClass("cat-item.cat-parent open-cat");
+		}
+	});
+	jQuery(".category-sidebar ul.children li.cat-item,ul.children li.cat-item > a").on("click", function(e) {
+		e.stopPropagation();
+	});
+});
+
+/******************************************
+    colosebut
+******************************************/
+
+jQuery("#colosebut1").on("click", function() {
+	jQuery("#div1").fadeOut("slow");
+});
+jQuery("#colosebut2").on("click", function() {
+	jQuery("#div2").fadeOut("slow");
+});
+jQuery("#colosebut3").on("click", function() {
+	jQuery("#div3").fadeOut("slow");
+});
+jQuery("#colosebut4").on("click", function() {
+	jQuery("#div4").fadeOut("slow");
+});
+
+
+/******************************************
+    totop
+******************************************/
+// browser window scroll (in pixels) after which the "back to top" link is shown
+var offset = 300,
+	//browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+	offset_opacity = 1200,
+	//duration of the top scrolling animation (in ms)
+	scroll_top_duration = 700,
+	//grab the "back to top" link
+	jQueryback_to_top = jQuery('.totop');
+
+//hide or show the "back to top" link
+jQuery(window).scroll(function() {
+	(jQuery(this).scrollTop() > offset) ? jQueryback_to_top.addClass('totop-is-visible'): jQueryback_to_top.removeClass('totop-is-visible totop-fade-out');
+	if (jQuery(this).scrollTop() > offset_opacity) {
+		jQueryback_to_top.addClass('totop-fade-out');
+	}
+});
+
+//smooth scroll to top
+jQueryback_to_top.on('click', function(event) {
+	event.preventDefault();
+	jQuery('body,html').animate({
+		scrollTop: 0,
+	}, scroll_top_duration);
+});
+
+/******************************************
+    tooltip
+******************************************/
+
+
+jQuery('[data-toggle="tooltip"]').tooltip();
+
+/* ---------------------------------------------
+    slider typist
 --------------------------------------------- */
-    
-$('.mobile-menu nav').meanmenu({
-    meanMenuContainer: '.mobile-menu-area',
-    meanScreenWidth: "991",
-    meanRevealPosition: "right",
-});
 
-/*-------------------------------------------
-  02. wow js active
---------------------------------------------- */
-  new WOW().init();
-    
-    
-/*-------------------------------------------
-  03. Product  Masonry (width)
---------------------------------------------- */ 
-$('.htc__product__container').imagesLoaded( function() {
-  
-    // filter items on button click
-    $('.product__menu').on( 'click', 'button', function() {
-      var filterValue = $(this).attr('data-filter');
-      $grid.isotope({ filter: filterValue });
-    }); 
-    // init Isotope
-    var $grid = $('.product__list').isotope({
-      itemSelector: '.single__pro',
-      percentPosition: true,
-      transitionDuration: '0.7s',
-      masonry: {
-        // use outer width of grid-sizer for columnWidth
-        columnWidth: '.single__pro',
-      }
-    });
-
-});
-
-$('.product__menu button').on('click', function(event) {
-    $(this).siblings('.is-checked').removeClass('is-checked');
-    $(this).addClass('is-checked');
-    event.preventDefault();
-});
-
-
-
-/*-------------------------------------------
-  04. Sticky Header
---------------------------------------------- */ 
-  var win = $(window);
-  var sticky_id = $("#sticky-header-with-topbar");
-  win.on('scroll',function() {    
-    var scroll = win.scrollTop();
-    if (scroll < 245) {
-      sticky_id.removeClass("scroll-header");
-    }else{
-      sticky_id.addClass("scroll-header");
-    }
-  });
-    
-    
-/*--------------------------
-  05. ScrollUp
----------------------------- */
-$.scrollUp({
-    scrollText: '<i class="zmdi zmdi-chevron-up"></i>',
-    easingType: 'linear',
-    scrollSpeed: 900,
-    animation: 'fade'
-});
-    
-    
-/*---------------------------
-  06. Tooltip
-------------------------------*/    
-$('[data-toggle="tooltip"]').tooltip({
-    animated: 'fade',
-    placement: 'top',
-    container: 'body'
-});
-    
-    
-/*-----------------------------------
-  07. ScrollReveal Js Init
--------------------------------------- */
-    window.sr = ScrollReveal({ duration: 800 , reset: true });
-    sr.reveal('.foo');
-    sr.reveal('.bar');
-    
-    
-/*-------------------------------------------------------
-  08. Fixed Footer bottom script ( Newsletter )
---------------------------------------------------------*/
-
-var $newsletter_height = $(".htc__foooter__area");
-$('.fixed__footer').css({'margin-bottom': $newsletter_height.height() + 'px'});
-
-
-/*------------------------------------    
-  09. Search Bar
---------------------------------------*/ 
-    
-  $( '.search__open' ).on( 'click', function () {
-    $( 'body' ).toggleClass( 'search__box__show__hide' );
-    return false;
-  });
-
-  $( '.search__close__btn .search__close__btn_icon' ).on( 'click', function () {
-    $( 'body' ).toggleClass( 'search__box__show__hide' );
-    return false;
-  });
-    
-    
-/*------------------------------------    
-  10. Toogle Menu
---------------------------------------*/
-  $('.toggle__menu').on('click', function() {
-    $('.offsetmenu').addClass('offsetmenu__on');
-    $('.body__overlay').addClass('is-visible');
-
-  });
-
-  $('.offsetmenu__close__btn').on('click', function() {
-      $('.offsetmenu').removeClass('offsetmenu__on');
-      $('.body__overlay').removeClass('is-visible');
-  });
-
-/*------------------------------------    
-  11. Shopping Cart Area
---------------------------------------*/
-
-  $('.cart__menu').on('click', function() {
-    $('.shopping__cart').addClass('shopping__cart__on');
-    $('.body__overlay').addClass('is-visible');
-
-  });
-
-  $('.offsetmenu__close__btn').on('click', function() {
-      $('.shopping__cart').removeClass('shopping__cart__on');
-      $('.body__overlay').removeClass('is-visible');
-  });
-
-
-/*------------------------------------    
-  12. Filter Area
---------------------------------------*/
-
-  $('.filter__menu').on('click', function() {
-    $('.filter__wrap').addClass('filter__menu__on');
-    $('.body__overlay').addClass('is-visible');
-
-  });
-
-  $('.filter__menu__close__btn').on('click', function() {
-      $('.filter__wrap').removeClass('filter__menu__on');
-      $('.body__overlay').removeClass('is-visible');
-  });
-    
-    
-/*------------------------------------    
-  13. User Menu
---------------------------------------*/
-
-  $('.user__menu').on('click', function() {
-    $('.user__meta').addClass('user__meta__on');
-    $('.body__overlay').addClass('is-visible');
-
-  });
-    
-  $('.offsetmenu__close__btn').on('click', function() {
-      $('.user__meta').removeClass('user__meta__on');
-      $('.body__overlay').removeClass('is-visible');
-  });
-
-
-
-/*------------------------------------    
-  14. Overlay Close
---------------------------------------*/
-  $('.body__overlay').on('click', function() {
-    $(this).removeClass('is-visible');
-    $('.offsetmenu').removeClass('offsetmenu__on');
-    $('.shopping__cart').removeClass('shopping__cart__on');
-    $('.filter__wrap').removeClass('filter__menu__on');
-    $('.user__meta').removeClass('user__meta__on');
-  });
-
-    
-/*-----------------------------------------------
-  15. Home Slider
--------------------------------------------------*/
-  if ($('.slider__activation__wrap').length) {
-    $('.slider__activation__wrap').owlCarousel({
-      loop: true,
-      margin:0,
-      nav:true,
-      autoplay: false,
-      navText: [ '<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-      autoplayTimeout: 10000,
-      items:1,
-      dots: false,
-      lazyLoad: true,
-      responsive:{
-        0:{
-          items:1
-        },
-        600:{
-          items:1
-        },
-        800:{
-          items:1
-        },
-        1024:{
-          items:1
-        },
-        1200:{
-          items:1
-        },
-        1400:{
-          items:1
-        },
-        1920:{
-          items:1
-        }
-      }
-    });
-  }
-
-/*-----------------------------------------------
-  16. Popular Product Wrap
--------------------------------------------------*/
-  $('.popular__product__wrap').owlCarousel({
-      loop: true,
-      margin:0,
-      nav:true,
-      autoplay: false,
-      navText: [ '<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-      autoplayTimeout: 10000,
-      items:3,
-      dots: false,
-      lazyLoad: true,
-      responsive:{
-        0:{
-          items:1
-        },
-        600:{
-          items:2
-        },
-        800:{
-          items:2
-        },
-        1024:{
-          items:3
-        },
-        1200:{
-          items:3
-        },
-        1400:{
-          items:3
-        },
-        1920:{
-          items:3
-        }
-      }
-    });
-    
-    
-/*-----------------------------------------------
-  17.  product-slider-active
--------------------------------------------------*/
-  $('.single-portfolio-slider').owlCarousel({
-      loop: true,
-      nav:true,
-      navText: [ '<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-      items:1,
-      responsive:{
-        0:{
-          items:1
-        },
-        600:{
-          items:1
-        },
-        800:{
-          items:1
-        },
-        1024:{
-          items:1
-        },
-        1200:{
-          items:1
-        },
-        1400:{
-          items:1
-        },
-        1920:{
-          items:1
-        }
-      }
-    });
-
-
-/*-----------------------------------------------
-  17.  product-slider-active
--------------------------------------------------*/
-
-
-  $('.product-slider-active').owlCarousel({
-      loop: true,
-      margin:0,
-      nav:true,
-      navText: [ '<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-      items:3,
-      responsive:{
-        0:{
-          items:1
-        },
-        600:{
-          items:2
-        },
-        800:{
-          items:2
-        },
-        1024:{
-          items:3
-        },
-        1200:{
-          items:3
-        },
-        1400:{
-          items:3
-        },
-        1920:{
-          items:3
-        }
-      }
-    });
-
-
-/*-----------------------------------------------
-  17.  product-details-slider
--------------------------------------------------*/
-
-
-  $('.product-details-slider').owlCarousel({
-      loop: true,
-      margin:20,
-      nav:true,
-      navText: [ '<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>' ],
-      items:3,
-      responsive:{
-        0:{
-          items:1
-        },
-        600:{
-          items:2
-        },
-        800:{
-          items:2
-        },
-        1024:{
-          items:3
-        },
-        1200:{
-          items:3
-        },
-        1400:{
-          items:3
-        },
-        1920:{
-          items:3
-        }
-      }
-    });
-
-
-/*-----------------------------------------------
-  18.  portfolio-slider-active
--------------------------------------------------*/
-
-
-  $('.portfolio-slider-active').owlCarousel({
-      loop: true,
-      dotsEach: 1,
-      nav:false,
-      items:3,
-      responsive:{
-        0:{
-          items:1
-        },
-        600:{
-          items:2
-        },
-        800:{
-          items:2
-        },
-        1024:{
-          items:3
-        },
-        1200:{
-          items:3
-        },
-        1400:{
-          items:3
-        },
-        1920:{
-          items:3
-        }
-      }
-    });
-
-
-
-/*-----------------------------------------------
-  17. Testimonial Wrap
--------------------------------------------------*/
-
-
-  $('.testimonial__wrap').owlCarousel({
-      loop: true,
-      margin:0,
-      nav:false,
-      autoplay: false,
-      navText: false,
-      autoplayTimeout: 10000,
-      items:1,
-      dots: false,
-      lazyLoad: true,
-      responsive:{
-        0:{
-          items:1
-        },
-        600:{
-          items:1
-        },
-        800:{
-          items:1
-        },
-        1024:{
-          items:1
-        },
-        1200:{
-          items:1
-        },
-        1400:{
-          items:1
-        },
-        1920:{
-          items:1
-        }
-      }
-    });
-
-
-
-
-/*--------------------------------
-  18. Magnific Popup
-----------------------------------*/
-
-$('.video-popup').magnificPopup({
-  type: 'iframe',
-  mainClass: 'mfp-fade',
-  removalDelay: 160,
-  preloader: false,
-  zoom: {
-      enabled: true,
-  }
-});
-
-$('.image-popup').magnificPopup({
-  type: 'image',
-  mainClass: 'mfp-fade',
-  removalDelay: 100,
-  gallery:{
-      enabled:true, 
-  }
-});
-
-
-/*-------------------------------
-  19. Price Slider Active
---------------------------------*/
-  $("#slider-range").slider({
-      range: true,
-      min: 10,
-      max: 500,
-      values: [110, 400],
-      slide: function(event, ui) {
-          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-      }
-  });
-  $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-      " - $" + $("#slider-range").slider("values", 1));
-
-
-/*-------------------------------
-  20.  Plus Minus Button 
---------------------------------*/
-
-    $(".cart-plus-minus").append('<div class="dec qtybutton">-</i></div><div class="inc qtybutton">+</div>');
-
-    $(".qtybutton").on("click", function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
-        if ($button.text() == "+") {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 1;
-            }
-        }
-        $button.parent().find("input").val(newVal);
-    });
-
-
-/*--------------------------
-  21. jQuery scroll Nav
----------------------------- */
-    $('.onepage--menu').onePageNav({
-        scrollOffset: 0
-    }); 
-
-
-
-/*---------------------
-    countdown
-  --------------------- */
-    $('[data-countdown]').each(function() {
-		var $this = $(this), finalDate = $(this).data('countdown');
-		$this.countdown(finalDate, function(event) {
-		$this.html(event.strftime('<span class="cdown day">%-D <p>Days</p></span> <span class="cdown hour">%-H <p>Hour</p></span> <span class="cdown minutes">%M <p>Min</p></span class="cdown second"> <span>%S <p>Sec</p></span>'));
-		});
-    });    
-    
-    
-/* isotop active */
-    var $grid = $('.grid');
-    var $gridJustified = $('.grid-justified');
-    var $gridItems = '.grid-item';
-    // filter items on button click
-    $grid.imagesLoaded(function() {
-        
-        $('.portfolio-menu-active').on('click', 'button', function() {
-            $(this).siblings('.active').removeClass('active');
-            $(this).addClass('active');
-            var filterValue = $(this).attr('data-filter');
-            $grid.isotope({
-                filter: filterValue
-            });
-        });
-        
-        // init Isotope
-        $grid.isotope({
-            itemSelector: $gridItems,
-            percentPosition: true,
-            masonry: {
-                // use outer width of grid-sizer for columnWidth
-                columnWidth: $gridItems,
-            }
-        });
-        
-        // init Isotope
-        $gridJustified.isotope({
-            itemSelector: $gridItems,
-            percentPosition: true,
-            layoutMode: 'fitRows',
-            masonry: {
-                // use outer width of grid-sizer for columnWidth
-                columnWidth: 1,
-            }
-        });
-    });
-    
-    
-    /*--
-    Magnific Popup
-    ------------------------*/
-    $('.img-poppu').magnificPopup({
-        type: 'image',
-        gallery:{
-            enabled:true
-        }
-    });
-    
-    
-    $('.sidebar-active').stickySidebar({
-        topSpacing: 80,
-        bottomSpacing: 30,
-        minWidth: 767,
-    });
-    
-    
-    
-    
-})(jQuery);
-
-
-
+if (typeof Typist == 'function') {
+	new Typist(document.querySelector('.typist-element'), {
+		letterInterval: 60,
+		textInterval: 3000
+	});
+}
+
+})
 

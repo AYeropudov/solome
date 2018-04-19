@@ -3,303 +3,366 @@
 <!DOCTYPE html>
 <html class="no-js" lang="ru">
 <head>
+    <!-- Basic page needs -->
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Bell'ores</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static "images/favicon.ico" %}">
-    <link rel="apple-touch-icon" href="{% static "apple-touch-icon.png" %}">
-
-
-    <!-- All css files are included here. -->
-    <!-- Bootstrap fremwork main css -->
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <!-- Owl Carousel main css -->
-    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
-    <!-- This core.css file contents all plugings css file. -->
-    <link rel="stylesheet" href="{% static "css/core.css" %}">
-    <!-- Theme shortcodes/elements style -->
-    <link rel="stylesheet" href="{% static "css/shortcode/shortcodes.css" %}">
-    <!-- Theme main style -->
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="{% static "css/responsive.css" %}">
-    <!-- User style -->
-    <link rel="stylesheet" href="{% static "css/custom.css" %}">
-
-
-    <!-- Modernizr JS -->
-    <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
-</head>
-
-<body>
-<!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
-<!-- Body main wrapper start -->
-<div class="wrapper fixed__footer">
-    <!-- Start Header Style -->
-    {% if landing %}
-        {% include "header-landing.html" %}
-    {% else %}
-        {% include "header.html" %}
-    {% endif %}
-    <!-- End Header Style -->
-    <div class="body__overlay"></div>
-    <!-- Start Offset Wrapper -->
-    <div class="offset__wrapper">
-        <!-- Start Search Popap -->
-        <div class="search__area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="search__inner">
-                            <form action="#" method="get">
-                                <input placeholder="Search here... " type="text">
-                                <button type="submit"></button>
-                            </form>
-                            <div class="search__close__btn">
-                                <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Search Popap -->
-        <!-- Start Offset MEnu -->
-        <div class="offsetmenu">
-            <div class="offsetmenu__inner">
-                <div class="offsetmenu__close__btn">
-                    <a href="#"><i class="zmdi zmdi-close"></i></a>
-                </div>
-                <div class="off__contact">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="{% static "images/logo/logo.png" %}" alt="logo">
-                        </a>
-                    </div>
-                    <p>Тут какой-то слоган и пару слов.</p>
-                </div>
-                <ul class="sidebar__thumd">
-                    <li><a href="#"><img src="{% static "images/sidebar-img/1.jpg" %}" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="{% static "images/sidebar-img/2.jpg" %}" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="{% static "images/sidebar-img/3.jpg" %}" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="{% static "images/sidebar-img/4.jpg" %}" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="{% static "images/sidebar-img/5.jpg" %}" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="{% static "images/sidebar-img/6.jpg" %}" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="{% static "images/sidebar-img/7.jpg" %}" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="{% static "images/sidebar-img/8.jpg" %}" alt="sidebar images"></a></li>
-                </ul>
-                <div class="offset__widget">
-                    <div class="offset__single">
-                        <h4 class="offset__title">Язык</h4>
-                        <ul>
-                            <li><a href="#"> Engish </a></li>
-                            <li><a href="#"> Russian </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="offset__sosial__share">
-                    <h4 class="offset__title">Мы в социальных сетях</h4>
-                    <ul class="off__soaial__link">
-                        <li><a class="bg--twitter" href="#" title="Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Solome shop</title>
+    <meta name="description" content="">
+    <meta name="keywords" content=""/>
 
-                        <li><a class="bg--instagram" href="#" title="Instagram"><i class="zmdi zmdi-instagram"></i></a>
-                        </li>
+    <!-- Mobile specific metas  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'head-css.html' %}
 
-                        <li><a class="bg--facebook" href="#" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
-                        </li>
-
-                        <li><a class="bg--googleplus" href="#" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
-                        </li>
-
-                        <li><a class="bg--google" href="#" title="Google"><i class="zmdi zmdi-google"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- End Offset MEnu -->
-    </div>
-    <!-- End Offset Wrapper -->
-    {% if is_breadcrumbs %}
-        <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area"
-             style="background: rgba(0, 0, 0, 0) url({% static "images/bg/1980_130_2.png" %}) no-repeat scroll center center / cover ;">
-            <div class="ht__bradcaump__wrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="bradcaump__inner text-center">
-                                {% for crumb in breadcrumbs %}
-                                    {% if forloop.last %}<h2 class="bradcaump-title">{{ crumb.title }}</h2>
-                                    {% endif %}
-                                {% endfor %}
-
-                                <nav class="bradcaump-inner">
-                                {% for crumb in breadcrumbs %}
-                                    {% if forloop.last %}
-                                        <span class="breadcrumb-item active">{{ crumb.title }}</span>
-                                    {% else %}
-                                        <a class="breadcrumb-item" href="{{ crumb.uri }}">{{ crumb.title }}</a><span class="brd-separetor">/</span>
-                                    {% endif %}
-                                {% endfor %}
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Bradcaump area -->
-    {% endif %}
+</head>
+<body class="cms-index-index cms-home-page">
+<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+{% include 'mobile-menu.html' %}
+<div id="page">
+{% include 'header.html' %}
+{% include 'menu.html' %}
     {% block content %}{% endblock %}
+<!-- Footer -->
 
-    <!-- Start Footer Area -->
-    <footer class="htc__foooter__area gray-bg">
-        <div class="container">
-            <div class="row">
-                <div class="footer__container clearfix">
-                    <!-- Start Single Footer Widget -->
-                    <div class="col-md-3 col-lg-3 col-sm-6">
-                        <div class="ft__widget">
-                            <div class="ft__logo">
-                                <a href="">
-                                    <img src="{% static "images/logo/logo.png" %}" alt="footer logo">
-                                </a>
-                            </div>
-                            <div class="footer-address">
-                                <ul>
-                                    <li>
-                                        <div class="address-icon">
-                                            <i class="zmdi zmdi-pin"></i>
-                                        </div>
-                                        <div class="address-text">
-                                            <p>194 Main Rd T, FS Rayed <br> VIC 3057, USA</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="address-icon">
-                                            <i class="zmdi zmdi-email"></i>
-                                        </div>
-                                        <div class="address-text">
-                                            <a href="#"> info@example.com</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="address-icon">
-                                            <i class="zmdi zmdi-phone-in-talk"></i>
-                                        </div>
-                                        <div class="address-text">
-                                            <p>+012 345 678 102 </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ul class="social__icon">
-                                <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-instagram"></i></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Single Footer Widget -->
-                    <!-- Start Single Footer Widget -->
-                    <div class="col-md-3 col-lg-2 col-sm-6 smt-30 xmt-30">
-                        <div class="ft__widget">
-                            <h2 class="ft__title">Продукция</h2>
-                            {% menu_catalog_footer %}
-                        </div>
-                    </div>
-                    <!-- Start Single Footer Widget -->
-                    <div class="col-md-3 col-lg-2 col-sm-6 smt-30 xmt-30">
-                        <div class="ft__widget">
-                            <h2 class="ft__title">Информация</h2>
-                            <ul class="footer-categories">
-                                <li><a href="about.html">О компании</a></li>
-                                <li><a href="contact.html">Контакты</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Start Single Footer Widget -->
-                    <div class="col-md-3 col-lg-3 col-lg-offset-1 col-sm-6 smt-30 xmt-30">
-                        <div class="ft__widget">
-                            <h2 class="ft__title">Подписка</h2>
-                            <div class="newsletter__form">
-                                <p>Подписаться на новостную рассылку, и всегдя быть в курсе новинок</p>
-                                <div class="input__box">
-                                    <div id="mc_embed_signup">
-                                        <form action="#" method="post" id="mc-embedded-subscribe-form"
-                                              name="mc-embedded-subscribe-form" class="validate" target="_blank"
-                                              novalidate>
-                                            <div id="mc_embed_signup_scroll" class="htc__news__inner">
-                                                <div class="news__input">
-                                                    <input type="email" value="" name="EMAIL" class="email"
-                                                           id="mce-EMAIL" placeholder="Email адресс" required>
-                                                </div>
-                                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                                <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                                                    <input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef"
-                                                           tabindex="-1" value=""></div>
-                                                <div class="clearfix subscribe__btn"><input type="submit" value="Send"
-                                                                                            name="subscribe"
-                                                                                            id="mc-embedded-subscribe"
-                                                                                            class="bst__btn btn--white__color">
+  <footer>
 
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Footer Widget -->
-                </div>
+    <!-- our clients Slider -->
+    <div class="our-clients">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="slider-items-products">
+            <div id="our-clients-slider" class="product-flexslider hidden-buttons">
+              <div class="slider-items slider-width-col6">
+
+                <!-- Item -->
+                <div class="item"> <a href="#"><img src="{% static "images/brand1.png" %}" alt="Image"></a> </div>
+                <!-- End Item -->
+
+                <!-- Item -->
+                <div class="item"> <a href="#"><img src="{% static "images/brand2.png" %}" alt="Image"></a> </div>
+                <!-- End Item -->
+
+                <!-- Item -->
+                <div class="item"> <a href="#"><img src="{% static "images/brand3.png" %}" alt="Image"></a> </div>
+                <!-- End Item -->
+
+                <!-- Item -->
+                <div class="item"> <a href="#"><img src="{% static "images/brand4.png" %}" alt="Image"></a> </div>
+                <!-- End Item -->
+                <!-- Item -->
+                <div class="item"> <a href="#"><img src="{% static "images/brand5.png" %}" alt="Image"></a> </div>
+                <!-- End Item -->
+
+                <!-- Item -->
+                <div class="item"> <a href="#"><img src="{% static "images/brand6.png" %}" alt="Image"></a> </div>
+                <!-- End Item -->
+
+                <!-- Item -->
+                <div class="item"> <a href="#"><img src="{% static "images/brand7.png" %}" alt="Image"></a> </div>
+                <!-- End Item -->
+
+              </div>
             </div>
-            <!-- Start Copyright Area -->
-            <div class="htc__copyright__area">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                        <div class="copyright__inner">
-                            <div class="copyright">
-                                <p>© 2017-2018 <a href="#">powered by Ima for BELL'ORES</a>
-                                    все права защищены.</p>
-                            </div>
-                            <ul class="footer__menu">
-                                <li><a href="/">Главная</a></li>
-                                <li><a href="/catalog">Продукция</a></li>
-                                <li><a href="/contact">Контакты</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Copyright Area -->
+          </div>
         </div>
-    </footer>
-    <!-- End Footer Area -->
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-2 collapsed-block">
+          <div class="footer-links">
+            <h3 class="links-title">Information<a class="expander visible-xs" href="#TabBlock-1">+</a></h3>
+            <div class="tabBlock" id="TabBlock-1">
+              <ul class="list-links list-unstyled">
+                <li><a href="#s">Delivery Information</a></li>
+                <li><a href="#">Discount</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="#">Terms &amp; Condition</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-2 collapsed-block">
+          <div class="footer-links">
+            <h3 class="links-title">Insider<a class="expander visible-xs" href="#TabBlock-3">+</a></h3>
+            <div class="tabBlock" id="TabBlock-3">
+              <ul class="list-links list-unstyled">
+                <li> <a href="sitemap.html">Sites Map </a> </li>
+                <li> <a href="#">News</a> </li>
+                <li> <a href="#">Trends</a> </li>
+                <li> <a href="about_us.html">About Us</a> </li>
+                <li> <a href="contact_us.html">Contact Us</a> </li>
+                <li> <a href="#">My Orders</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-2 col-xs-12 col-lg-2 collapsed-block">
+          <div class="footer-links">
+            <h3 class="links-title">Service<a class="expander visible-xs" href="#TabBlock-4">+</a></h3>
+            <div class="tabBlock" id="TabBlock-4">
+              <ul class="list-links list-unstyled">
+                <li> <a href="account_page.html">Account</a> </li>
+                <li> <a href="wishlist.html">Wishlist</a> </li>
+                <li> <a href="shopping_cart.html">Shopping Cart</a> </li>
+                <li> <a href="#">Return Policy</a> </li>
+                <li> <a href="#">Special</a> </li>
+                <li> <a href="#">Lookbook</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
+          <h3 class="links-title">Contact us</h3>
+          <p>Lorem Ipsum is simply dummy text of the print and typesetting industry.</p>
+          <div class="footer-content">
+            <div class="email"> <i class="fa fa-envelope"></i>
+              <p><a href="mailto:support@template.com">support@template.com</a></p>
+            </div>
+            <div class="phone"> <i class="fa fa-phone"></i>
+              <p>(800) 0123 456 789</p>
+            </div>
+            <div class="address"> <i class="fa fa-map-marker"></i>
+              <p> My Company, 12/34 - West 21st Street, New York, USA</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-3">
+          <div class="footer-links">
+            <div class="footer-newsletter">
+              <h3 class="links-title">Sign up for newsletter</h3>
+              <form id="newsletter-validate-detail" method="post" action="#">
+                <div class="newsletter-inner">
+                  <input class="newsletter-email" name='Email' placeholder='Enter Your Email'/>
+                  <button class="button subscribe" type="submit" title="Subscribe">Subscribe</button>
+                </div>
+              </form>
+            </div>
+            <div class="social">
+              <ul class="inline-mode">
+                <li class="social-network fb"><a title="Connect us on Facebook" target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li class="social-network googleplus"><a title="Connect us on Google+" target="_blank" href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li class="social-network tw"><a title="Connect us on Twitter" target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+                <li class="social-network linkedin"><a title="Connect us on Linkedin" target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li class="social-network rss"><a title="Connect us on RSS" target="_blank" href="#"><i class="fa fa-rss"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-coppyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2017 <a href="#"> Modern </a>. All Rights Reserved. </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="payment">
+              <ul>
+                <li><a href="#"><img title="Visa" alt="Visa" src="{% static "images/visa.png" %}"></a></li>
+                <li><a href="#"><img title="Paypal" alt="Paypal" src="{% static "images/paypal.png" %}"></a></li>
+                <li><a href="#"><img title="Discover" alt="Discover" src="{% static "images/discover.png" %}"></a></li>
+                <li><a href="#"><img title="Master Card" alt="Master Card" src="{% static "images/master-card.png" %}"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="totop"><i class="fa fa-arrow-up"></i></a>
+  <!-- End Footer -->
+  <!--Newsletter Popup Start-->
+  <!--End of Newsletter Popup-->
 </div>
-<!-- Body main wrapper end -->
-<!-- Placed js at the end of the document so the pages load faster -->
 
-<!-- jquery latest version -->
-<script src="{% static "js/vendor/jquery-1.12.0.min.js" %}"></script>
-<!-- Bootstrap framework js -->
-<script src="{% static "js/bootstrap.min.js" %}"></script>
-<!-- All js plugins included in this file. -->
-<script src="{% static "js/plugins.js" %}"></script>
-<script src="{% static "js/slick.min.js" %}"></script>
-<script src="{% static "js/owl.carousel.min.js" %}"></script>
-<!-- Waypoints.min.js. -->
-<script src="{% static "js/waypoints.min.js" %}"></script>
-<!-- Main js file that contents all jQuery plugins activation. -->
-<script src="{% static "js/main.js" %}"></script>
-{% block extend_script %}{% endblock %}
 </body>
+<!-- JS -->
+
+<!-- jquery js -->
+<script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+
+<!-- bootstrap js -->
+<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+
+<!-- Slider Js -->
+<script type="text/javascript" src="{% static "js/revolution-slider.js" %}"></script>
+
+<!-- owl.carousel.min js -->
+<script type="text/javascript" src="{% static "js/owl.carousel.min.js" %}"></script>
+
+<!-- bxslider js -->
+<script type="text/javascript" src="{% static "js/jquery.bxslider.js" %}"></script>
+
+<!-- megamenu js -->
+<script type="text/javascript" src="{% static "js/megamenu.js" %}"></script>
+<script type="text/javascript">
+  /* <![CDATA[ */
+  var mega_menu = '0';
+
+  /* ]]> */
+  </script>
+
+<!-- jquery.mobile-menu js -->
+<script type="text/javascript" src="{% static "js/mobile-menu.js" %}"></script>
+
+<!--jquery-ui.min js -->
+<script type="text/javascript" src="{% static "js/jquery-ui.js" %}"></script>
+
+<!-- main js -->
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+
+<!-- countdown js -->
+<script type="text/javascript" src="{% static "js/countdown.js" %}"></script>
+
+<!-- Revolution slider -->
+<script>var tpj=jQuery;
+var bannerslide;
+tpj(document).ready(function() {
+    if(tpj("#banner-slide").revolution == undefined){
+        revslider_showDoubleJqueryError("#banner-slide");
+    }else{
+        bannerslide = tpj("#banner-slide").show().revolution({
+            sliderType:"standard",
+            sliderLayout:"auto",
+            dottedOverlay:"none",
+            delay:9000,
+            navigation: {
+                keyboardNavigation:"off",
+                keyboard_direction: "horizontal",
+                mouseScrollNavigation:"off",
+                mouseScrollReverse:"default",
+                onHoverStop:"off",
+                touch:{
+                    touchenabled:"on",
+                    swipe_threshold: 75,
+                    swipe_min_touches: 1,
+                    swipe_direction: "horizontal",
+                    drag_block_vertical: false
+                }
+                ,
+                arrows: {
+                    enable: false,
+                    style: 'erinyen',
+                    tmp: '',
+                    rtl: false,
+                    hide_onleave: false,
+                    hide_onmobile: true,
+                    hide_under: 0,
+                    hide_over: 9999,
+                    hide_delay: 200,
+                    hide_delay_mobile: 1200,
+
+                    left: {
+                        container: 'slider',
+                        h_align: 'left',
+                        v_align: 'center',
+                        h_offset: 20,
+                        v_offset: 0
+                    },
+
+                    right: {
+                        container: 'slider',
+                        h_align: 'right',
+                        v_align: 'center',
+                        h_offset: 20,
+                        v_offset: 0
+                    }
+                },
+
+                bullets: {
+
+                    enable: true,
+                    style: 'uranus',
+                    tmp: '<span class="tp-bullet-inner"></span>',
+                    direction: 'horizontal',
+                    rtl: false,
+
+                    container: 'slider',
+                    h_align: 'center',
+                    v_align: 'bottom',
+                    h_offset: 0,
+                    v_offset: 20,
+                    space: 5,
+
+                    hide_onleave: false,
+                    hide_onmobile: false,
+                    hide_under: 0,
+                    hide_over: 9999,
+                    hide_delay: 200,
+                    hide_delay_mobile: 1200
+
+                }
+            },
+            viewPort: {
+                enable:true,
+                outof:"pause",
+                visible_area:"80%",
+                presize:false
+            },
+            responsiveLevels:[1240,1024,778,480],
+            visibilityLevels:[1240,1024,778,480],
+            gridwidth:[1240,1024,778,480],
+            gridheight:[700,600,500,400],
+            lazyType:"none",
+            parallax: {
+                type:"mouse",
+                origo:"slidercenter",
+                speed:2000,
+                levels:[2,3,4,5,6,7,12,16,10,50,46,47,48,49,50,55],
+                type:"mouse",
+            },
+            shadow:0,
+            spinner:"off",
+            stopLoop:"off",
+            stopAfterLoops:-1,
+            stopAtSlide:-1,
+            shuffle:"off",
+            autoHeight:"off",
+            hideThumbsOnMobile:"off",
+            hideSliderAtLimit:0,
+            hideCaptionAtLimit:0,
+            hideAllCaptionAtLilmit:0,
+            debugMode:false,
+            fallbacks: {
+                simplifyAll:"off",
+                nextSlideOnWindowFocus:"off",
+                disableFocusListener:false,
+            }
+        });
+    }
+}); /*ready*/</script>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog newsletter-popup">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="modal-body">
+          <h4 class="modal-title">Join Our Newsletters</h4>
+          <form id="newsletter-form" method="post" action="#">
+            <div class="content-subscribe">
+              <div class="form-subscribe-header">
+                <label>Enter your email and we'll send you a coupon with 10% off your next order.</label>
+              </div>
+              <div class="input-box">
+                <input type="text" class="input-text newsletter-subscribe" title="Sign up for our newsletter" name="email" placeholder="Enter your email address">
+              </div>
+              <div class="actions">
+                <button class="button-subscribe" title="Subscribe" type="submit">Subscribe</button>
+              </div>
+            </div>
+          </form>
+          <div class="subscribe-bottom">
+            <input name="notshowpopup" id="notshowpopup" type="checkbox">
+            Don’t show this popup again </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% block extend_script %}{% endblock %}
 </html>
