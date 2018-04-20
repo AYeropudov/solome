@@ -24,7 +24,7 @@ class AdapterProduct:
                 try:
                     pr = float(form_data['price'])
                 except:
-                    pr = None
+                    pr = 0.0
                 new_product = Product(
                     title=form_data['title'],
                     product_class=product_class,
@@ -90,7 +90,7 @@ class AdapterProduct:
                     try:
                         pr = float(form_data['price'])
                     except ValueError:
-                        pr = None
+                        pr = 0.0
                     product_to_update.price = float(pr)
                     try:
                         product_to_update.clean_fields()

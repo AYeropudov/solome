@@ -19,7 +19,7 @@ class ProductsAddView(View):
         prevalidate = {}
         for key in keys:
             if request.POST[key] == '':
-                prevalidate[key]='Это обязательное поле'
+                prevalidate[key] = 'Это обязательное поле'
         if len(prevalidate.keys()) > 0:
             return JsonResponse(data={"errors": prevalidate}, status=400)
         try:
