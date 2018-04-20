@@ -1,18 +1,19 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
-from shop.models import Product, Catalog, ProductClass
+from shop.models import Product, Catalog, ProductClass, ProductBrand
 from cms.adapters import AdapterProduct
 from cms.adapters.exceptions import ProductException
 
 
 class ProductsAddView(View):
     def get(self, request):
-        product =  Product()
+        product = Product()
         catalogs = Catalog.objects.all()
         pclasess = ProductClass.objects.all()
+        pbrands = ProductBrand.objects.all()
         return render(request=request, template_name='cms/products/edit.html',
-                      context={"title_page": "Товары", "product": product, "catalogs": catalogs, "product_class_list": pclasess})
+                      context={"title_page": "Товары", "product": product, "catalogs": catalogs, "product_class_list": pclasess, "product_brand_list": pbrands})
 
     def post(self, request):
         keys = request.POST.keys()
@@ -27,7 +28,6 @@ class ProductsAddView(View):
         except ProductException as e:
             catalogs = Catalog.objects.all()
             pclasess = ProductClass.objects.all()
-            _context = {}
-            _context['errors']= e.errors
+            _context = {'errors': e.errors}
             return JsonResponse(data=_context, status=400)
         return JsonResponse({'ok': ""})
