@@ -1,0 +1,182 @@
+{% load static from staticfiles %}
+<!-- JS -->
+<!-- jquery js -->
+<script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+
+<!-- bootstrap js -->
+<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+
+<!-- Slider Js -->
+<script type="text/javascript" src="{% static "js/revolution-slider.js" %}"></script>
+
+<!-- owl.carousel.min js -->
+<script type="text/javascript" src="{% static "js/owl.carousel.min.js" %}"></script>
+
+<!-- bxslider js -->
+<script type="text/javascript" src="{% static "js/jquery.bxslider.js" %}"></script>
+
+<!-- megamenu js -->
+<script type="text/javascript" src="{% static "js/megamenu.js" %}"></script>
+<script type="text/javascript">
+  /* <![CDATA[ */
+  var mega_menu = '0';
+
+  /* ]]> */
+  </script>
+
+<!-- jquery.mobile-menu js -->
+<script type="text/javascript" src="{% static "js/mobile-menu.js" %}"></script>
+
+<!--jquery-ui.min js -->
+<script type="text/javascript" src="{% static "js/jquery-ui.js" %}"></script>
+
+<!-- main js -->
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+
+<!-- countdown js -->
+<script type="text/javascript" src="{% static "js/countdown.js" %}"></script>
+
+<!-- Revolution slider -->
+<script>var tpj=jQuery;
+var bannerslide;
+tpj(document).ready(function() {
+    if(tpj("#banner-slide").revolution == undefined){
+        revslider_showDoubleJqueryError("#banner-slide");
+    }else{
+        bannerslide = tpj("#banner-slide").show().revolution({
+            sliderType:"standard",
+            sliderLayout:"auto",
+            dottedOverlay:"none",
+            delay:9000,
+            navigation: {
+                keyboardNavigation:"off",
+                keyboard_direction: "horizontal",
+                mouseScrollNavigation:"off",
+                mouseScrollReverse:"default",
+                onHoverStop:"off",
+                touch:{
+                    touchenabled:"on",
+                    swipe_threshold: 75,
+                    swipe_min_touches: 1,
+                    swipe_direction: "horizontal",
+                    drag_block_vertical: false
+                }
+                ,
+                arrows: {
+                    enable: false,
+                    style: 'erinyen',
+                    tmp: '',
+                    rtl: false,
+                    hide_onleave: false,
+                    hide_onmobile: true,
+                    hide_under: 0,
+                    hide_over: 9999,
+                    hide_delay: 200,
+                    hide_delay_mobile: 1200,
+
+                    left: {
+                        container: 'slider',
+                        h_align: 'left',
+                        v_align: 'center',
+                        h_offset: 20,
+                        v_offset: 0
+                    },
+
+                    right: {
+                        container: 'slider',
+                        h_align: 'right',
+                        v_align: 'center',
+                        h_offset: 20,
+                        v_offset: 0
+                    }
+                },
+
+                bullets: {
+
+                    enable: true,
+                    style: 'uranus',
+                    tmp: '<span class="tp-bullet-inner"></span>',
+                    direction: 'horizontal',
+                    rtl: false,
+
+                    container: 'slider',
+                    h_align: 'center',
+                    v_align: 'bottom',
+                    h_offset: 0,
+                    v_offset: 20,
+                    space: 5,
+
+                    hide_onleave: false,
+                    hide_onmobile: false,
+                    hide_under: 0,
+                    hide_over: 9999,
+                    hide_delay: 200,
+                    hide_delay_mobile: 1200
+
+                }
+            },
+            viewPort: {
+                enable:true,
+                outof:"pause",
+                visible_area:"80%",
+                presize:false
+            },
+            responsiveLevels:[1240,1024,778,480],
+            visibilityLevels:[1240,1024,778,480],
+            gridwidth:[1240,1024,778,480],
+            gridheight:[700,600,500,400],
+            lazyType:"none",
+            parallax: {
+                type:"mouse",
+                origo:"slidercenter",
+                speed:2000,
+                levels:[2,3,4,5,6,7,12,16,10,50,46,47,48,49,50,55],
+                type:"mouse",
+            },
+            shadow:0,
+            spinner:"off",
+            stopLoop:"off",
+            stopAfterLoops:-1,
+            stopAtSlide:-1,
+            shuffle:"off",
+            autoHeight:"off",
+            hideThumbsOnMobile:"off",
+            hideSliderAtLimit:0,
+            hideCaptionAtLimit:0,
+            hideAllCaptionAtLilmit:0,
+            debugMode:false,
+            fallbacks: {
+                simplifyAll:"off",
+                nextSlideOnWindowFocus:"off",
+                disableFocusListener:false,
+            }
+        });
+    }
+}); /*ready*/</script>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog newsletter-popup">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="modal-body">
+          <h4 class="modal-title">Join Our Newsletters</h4>
+          <form id="newsletter-form" method="post" action="#">
+            <div class="content-subscribe">
+              <div class="form-subscribe-header">
+                <label>Enter your email and we'll send you a coupon with 10% off your next order.</label>
+              </div>
+              <div class="input-box">
+                <input type="text" class="input-text newsletter-subscribe" title="Sign up for our newsletter" name="email" placeholder="Enter your email address">
+              </div>
+              <div class="actions">
+                <button class="button-subscribe" title="Subscribe" type="submit">Subscribe</button>
+              </div>
+            </div>
+          </form>
+          <div class="subscribe-bottom">
+            <input name="notshowpopup" id="notshowpopup" type="checkbox">
+            Don’t show this popup again </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% block extend_script %}{% endblock %}
