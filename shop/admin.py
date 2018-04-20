@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from shop.models import Product, ProductAttributes, ProductClass, ProductImage, ProductVariant, AttributeForProduct, VariantImage
-from shop.models import Tag, CatalogTag, Catalog, ProductTag, CatalogImage, ProductToCatalog
+from shop.models import Tag, CatalogTag, Catalog, ProductTag, CatalogImage, ProductToCatalog, ProductBrand
 from imagekit.admin import AdminThumbnail
 
 
@@ -31,5 +31,5 @@ admin.site.register(Tag)
 admin.site.register(CatalogTag)
 admin.site.register(ProductTag)
 admin.site.register(ProductToCatalog)
-
+admin.site.register(ProductBrand)
 
