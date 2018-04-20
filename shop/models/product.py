@@ -22,6 +22,18 @@ class ProductClass(models.Model):
         verbose_name_plural = 'Виды товаров'
 
 
+class ProductBrand(models.Model):
+    title = models.CharField(max_length=255, db_index=True)
+    code = models.CharField(max_length=200, db_index=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Товарный бренд'
+        verbose_name_plural = 'Товарные бренды'
+
+
 class Product(models.Model):
     product_class = models.ForeignKey(ProductClass, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=300, db_index=True)
@@ -30,6 +42,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     created_at = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False, blank=True)
+    brand = models.ForeignKey(ProductBrand, on_delete=models.SET_NULL)
+    code = models.CharField(max_length=255)
 
     def __str__(self):
         if self.product_class.has_variants:
