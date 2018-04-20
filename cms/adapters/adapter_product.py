@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.db import IntegrityError
 from cms.adapters.exceptions import ProductException
-from shop.models import Product, ProductClass, ProductImage, ProductToCatalog, Catalog
+from shop.models import Product, ProductClass, ProductImage, ProductToCatalog, Catalog, ProductBrand
 from django.core.exceptions import ValidationError, NON_FIELD_ERRORS
 
 
@@ -11,6 +11,7 @@ class AdapterProduct:
         try:
             with transaction.atomic():
                 product_class = None
+                product_brand = None
                 catalog = None
                 try:
                     product_class = ProductClass.objects.get(pk=int(form_data['product_class']))
@@ -22,6 +23,10 @@ class AdapterProduct:
                 except Catalog.DoesNotExist as e:
                     raise ProductException('Не удалось найти такой каталог')
                 try:
+                    product_brand = ProductBrand.objects.get(pk=int(form_data['product_brand']))
+                except ProductBrand.DoesNotExist as e:
+                    raise ProductException('Не удалось найти такой бренд')
+                try:
                     pr = float(form_data['price'])
                 except:
                     pr = 0.0
@@ -29,6 +34,7 @@ class AdapterProduct:
                     title=form_data['title'],
                     product_class=product_class,
                     description=form_data['description'],
+                    product_brand=product_brand,
                     price=pr,
                     is_delete=False,
                     is_featured=True,
@@ -72,6 +78,7 @@ class AdapterProduct:
         try:
             with transaction.atomic():
                 product_class = None
+                product_brand = None
                 catalog = None
                 try:
                     product_class = ProductClass.objects.get(pk=int(form_data['product_class']))
@@ -82,11 +89,18 @@ class AdapterProduct:
                     catalog = Catalog.objects.get(pk=int(form_data['catalog']))
                 except Catalog.DoesNotExist as e:
                     raise ProductException('Не удалось найти такой каталог')
+
+                try:
+                    product_brand = ProductBrand.objects.get(pk=int(form_data['product_brand']))
+                except ProductBrand.DoesNotExist as e:
+                    raise ProductException('Не удалось найти такой бренд')
+
                 try:
                     product_to_update = Product.objects.get(pk=product_id)
                     product_to_update.title = form_data['title']
                     product_to_update.description = form_data['description']
                     product_to_update.product_class = product_class
+                    product_to_update.product_brand = product_brand
                     try:
                         pr = float(form_data['price'])
                     except ValueError:

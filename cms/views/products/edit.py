@@ -1,7 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from shop.models import Product, Catalog, ProductClass
+from shop.models import Product, Catalog, ProductClass, ProductBrand
 from cms.adapters import AdapterProduct
 from cms.adapters.exceptions import ProductException
 
@@ -17,8 +17,16 @@ class ProductsEditView(View):
                 catalog = node.catalog.pk
         catalogs = Catalog.objects.all()
         pclasess = ProductClass.objects.all()
+        pbrands = ProductBrand.objects.all()
         return render(request=request, template_name='cms/products/edit.html',
-                      context={"title": "Редактор > {}".format(product.title), "product": product, "catalogs": catalogs, "product_class_list": pclasess, 'catalog': catalog})
+                      context={
+                          "title": "Редактор > {}".format(product.title),
+                          "product": product,
+                          "catalogs": catalogs,
+                          "product_class_list": pclasess,
+                          "product_brand_list": pbrands,
+                          'catalog': catalog
+                      })
 
     def post(self, request, product_id):
         product = get_object_or_404(Product, pk=product_id)
