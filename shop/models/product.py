@@ -39,7 +39,7 @@ class Product(models.Model):
     title = models.CharField(max_length=300, db_index=True)
     description = models.TextField()
     is_featured = models.BooleanField(default=True, blank=True)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    price = models.FloatField(default=0.00)
     created_at = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False, blank=True)
     brand = models.ForeignKey(ProductBrand, on_delete=models.DO_NOTHING, blank=True, null=True)

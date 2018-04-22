@@ -28,6 +28,7 @@ class ProductsAddView(View):
         except ProductException as e:
             catalogs = Catalog.objects.all()
             pclasess = ProductClass.objects.all()
+            pbrands = ProductBrand.objects.all()
             _context = {'errors': e.errors}
             return JsonResponse(data=_context, status=400)
         return JsonResponse({'ok': ""})

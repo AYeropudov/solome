@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db import transaction
 from django.db import IntegrityError
 from cms.adapters.exceptions import ProductException
@@ -34,15 +36,17 @@ class AdapterProduct:
                     title=form_data['title'],
                     product_class=product_class,
                     description=form_data['description'],
-                    product_brand=product_brand,
+                    brand=product_brand,
+                    code=form_data['code'],
                     price=pr,
                     is_delete=False,
-                    is_featured=True,
+                    is_featured=True
                 )
                 try:
                     new_product.clean_fields()
                     new_product.save()
                 except ValidationError as e:
+                    tmp = e
                     raise ProductException(message='validation errors', errors=e.message_dict)
                 # new_product = Product.objects.create(
                 #     title=form_data['title'],
@@ -100,7 +104,8 @@ class AdapterProduct:
                     product_to_update.title = form_data['title']
                     product_to_update.description = form_data['description']
                     product_to_update.product_class = product_class
-                    product_to_update.product_brand = product_brand
+                    product_to_update.brand = product_brand
+                    product_to_update.code = form_data['code']
                     try:
                         pr = float(form_data['price'])
                     except ValueError:

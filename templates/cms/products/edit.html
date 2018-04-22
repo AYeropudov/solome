@@ -21,7 +21,7 @@
                     <option value="" hidden>--------</option>
                     {% for pbrand in product_brand_list %}
                         <option value="{{ pbrand.pk }}"
-                                {% if product.product_brand.pk == pbrand.pk %}selected{% endif %}>{{ pbrand.title }}</option>
+                                {% if product.brand.pk == pbrand.pk %}selected{% endif %}>{{ pbrand.title }}</option>
                     {% endfor %}
                 </select>
                 <div class="invalid-feedback" id="feed_product_brand"></div>
@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label for="titlePrice">Цена</label>
-                <input type="number" class="form-control" id="titlePrice" name="price" required
+                <input type="text" class="form-control" id="titlePrice" name="price" required
                        value="{{ product.price }}">
                 <div class="invalid-feedback" id="feed_price"></div>
             </div>
