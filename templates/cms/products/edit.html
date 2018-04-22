@@ -57,7 +57,7 @@
             <div class="form-group">
                 <label for="titlePrice">Цена</label>
                 <input type="text" class="form-control" id="titlePrice" name="price" required
-                       value="{{ product.price }}">
+                       value="{{ product.price|floatformat:2 }}">
                 <div class="invalid-feedback" id="feed_price"></div>
             </div>
             <div class="form-group">

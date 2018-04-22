@@ -28,10 +28,9 @@ class AdapterProduct:
                     product_brand = ProductBrand.objects.get(pk=int(form_data['product_brand']))
                 except ProductBrand.DoesNotExist as e:
                     raise ProductException('Не удалось найти такой бренд')
-                try:
-                    pr = float(form_data['price'])
-                except:
-                    pr = 0.0
+                pr = form_data['price'].replace(",", ".")
+                pr = float(pr)
+
                 new_product = Product(
                     title=form_data['title'],
                     product_class=product_class,
@@ -48,17 +47,9 @@ class AdapterProduct:
                 except ValidationError as e:
                     tmp = e
                     raise ProductException(message='validation errors', errors=e.message_dict)
-                # new_product = Product.objects.create(
-                #     title=form_data['title'],
-                #     product_class = product_class,
-                #     description = form_data['description'],
-                #     price= float(form_data['price']),
-                #     is_delete= False,
-                #     is_featured= True,
-                # )
                 try:
                     ProductToCatalog.objects.create(product=new_product, catalog=catalog)
-                    if(catalog.parent):
+                    if catalog.parent:
                         ProductToCatalog.objects.create(product=new_product, catalog=catalog.parent)
                 except IntegrityError as e:
                     raise ProductException('Не удалось добавить товар к каталогу')
@@ -106,10 +97,8 @@ class AdapterProduct:
                     product_to_update.product_class = product_class
                     product_to_update.brand = product_brand
                     product_to_update.code = form_data['code']
-                    try:
-                        pr = float(form_data['price'])
-                    except ValueError:
-                        pr = 0.0
+                    pr = form_data['price'].replace(",", ".")
+                    pr = float(pr)
                     product_to_update.price = float(pr)
                     try:
                         product_to_update.clean_fields()
