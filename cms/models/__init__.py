@@ -1,1 +1,0 @@
-from shop.models import *
