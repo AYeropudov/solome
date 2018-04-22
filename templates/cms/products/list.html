@@ -1,6 +1,7 @@
 {% extends 'cms/base.html' %}
 {% load static from staticfiles %}
 {% block content %}
+    {% csrf_token %}
     <div class="row">
         <div class="col-xs-12">
             <h3 class="header smaller lighter green">Глобальные действия</h3>

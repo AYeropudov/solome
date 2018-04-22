@@ -65,7 +65,26 @@ jQuery(function ($) {
      }
      ).css('padding-top', '12px');
      */
-
+    
+    $('.copy-product').on('click', function (e) {
+        let _target = $(e.currentTarget);
+        let product_id = _target.data('id');
+        $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            data: {},
+            processData: false,
+            contentType: false,
+            beforeSend: function(xhr) {xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val());},
+            url: '/cms/products/copy/'+product_id
+        })
+            .done(function (msg) {
+               window.location = msg.location;
+            })
+            .error(function (msg) {
+                console.log(msg);
+            });
+    });
 
 });
 

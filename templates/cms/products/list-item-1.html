@@ -41,6 +41,9 @@
             <a href="{% url 'cms.product.edit' product_id=product.pk%}" class="btn btn-xs btn-info" title="изменить">
                 <i class="ace-icon fa fa-pencil bigger-120"></i>
             </a>
+            <button data-id="{{ product.pk }}" class="btn btn-xs btn-info copy-product" title="добавить копированием">
+                <i class="ace-icon fa fa-copy bigger-120"></i>
+            </button>
 
             <button class="btn btn-xs btn-danger" title="удалить">
                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
