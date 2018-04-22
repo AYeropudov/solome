@@ -1,0 +1,36 @@
+<h4>Добавить</h4>
+<form class="form-horizontal" role="form" id="edit-attr" data-method="POST"
+      data-action="{% url 'cms.attributes' %}{{ item.pk }}/">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label class="col-md-4 control-label no-padding-right" for="titleField"> Название </label>
+        <div class="col-md-8">
+            <input type="text" id="titleField" name="title" placeholder="Название" class="col-md-12" value="{{ item.title }}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label no-padding-right" for="codeField"> Сомвольный код </label>
+        <div class="col-md-8">
+            <input type="text" id="codeField" name="code" placeholder="Символьный код" class="col-md-12" value="{{ item.code }}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label no-padding-right" for="inputType"> Тип атрибута </label>
+        <div class="col-md-8">
+            <select name="cast_type" id="inputType">
+                {% for choice in choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == item.cast_type %} selected {% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button class="btn btn-info" type="button" onclick="submitForm(this)" data-form="edit-attr">
+                <i class="ace-icon fa fa-check bigger-110"></i>
+                Сохранить
+            </button>
+        </div>
+    </div>
+</form>
