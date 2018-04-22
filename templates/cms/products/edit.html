@@ -156,6 +156,10 @@
                 type: 'POST',
                 url: '{% if product.pk %}{% url 'cms.product.edit' product_id=product.pk %}{% else %}{% url 'cms.product.add' %}{% endif %}',
                 beforeSend: function () {
+                    bootbox.dialog({
+                    title: "Process...",
+                    message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+                    });
                 },
                 data: data_items,
                 processData: false,
@@ -190,5 +194,6 @@
     <link rel="stylesheet" href="{% static "cms/assets/css/colorbox.min.css" %}"/>
     <script src="{% static "cms/assets/js/dropzone.min.js" %}"></script>
     <script src="{% static "cms/assets/js/jquery.colorbox.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/bootbox.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/js/product.js" %}"></script>
 {% endblock %}
