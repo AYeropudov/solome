@@ -1,5 +1,9 @@
 {% extends 'cms/base.html' %}
 {% load static from staticfiles %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "cms/assets/css/select2.min.css" %}" />
+    <link rel="stylesheet" href="{% static "cms/assets/css/bootstrap-duallistbox.min.css" %}" />
+{% endblock %}
 {% block content %}
     {% csrf_token %}
     <div class="row">
@@ -13,6 +17,10 @@
             <a href="#" class="btn btn-warning btn-app radius-4">
                 <i class="ace-icon fa fa-lock bigger-230"></i>
                 Скрыть
+            </a>
+             <a href="#"  class="btn btn-purple btn-app radius-4 tagging">
+                <i class="ace-icon fa fa-tags bigger-230"></i>
+                Теги
             </a>
             <a href="#" class="btn btn-danger btn-app radius-4">
                 <i class="ace-icon fa fa-remove bigger-230"></i>
@@ -67,6 +75,8 @@
     <script type="text/javascript" src="{% static "cms/assets/js/buttons.print.min.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/assets/js/buttons.colVis.min.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/assets/js/dataTables.select.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/bootbox.js" %}"></script>
+    <script src="{% static "cms/assets/js/jquery.bootstrap-duallistbox.min.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/js/products.js" %}"></script>
 
 {% endblock %}

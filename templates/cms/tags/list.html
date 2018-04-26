@@ -1,0 +1,63 @@
+    {% extends 'cms/base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="header smaller lighter green">Глобальные действия</h3>
+            <p></p>
+            <button class="btn btn-success btn-app radius-4 add-attr-btn">
+                <i class="ace-icon fa fa-plus bigger-230"></i>
+                Добавить
+            </button>
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="simple-table" class="table  table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="center">
+                        <label class="pos-rel">
+                            <input type="checkbox" class="ace"/>
+                            <span class="lbl"></span>
+                        </label>
+                    </th>
+                    <th>Название</th>
+                    <th>Код</th>
+                    <th> ...</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for attribute in list %}
+                    <tr>
+                        <td>
+                            <label class="pos-rel">
+                                <input type="checkbox" class="ace"/><span class="lbl"></span>
+                            </label>
+                        </td>
+                        <td>{{ attribute.title }}</td>
+                        <td>{{ attribute.code }}</td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <button class="btn btn-xs btn-info edit-attr-btn" data-id="{{ attribute.pk }}" title="изменить">
+                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                </button>
+                                <button class="btn btn-xs btn-danger" title="удалить">
+                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block exta_files %}
+    <script type="text/javascript" src="{% static "cms/assets/js/jquery.nestable.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/js/tags.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/bootbox.js" %}"></script>
+    <script type="text/javascript" src="{% static "cms/assets/js/ace-elements.min.js" %}"></script>
+{% endblock %}

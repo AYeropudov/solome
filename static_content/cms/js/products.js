@@ -86,5 +86,54 @@ jQuery(function ($) {
             });
     });
 
+    $('.tagging').on('click', function () {
+       let _products = $('.mass-product:checked');
+       let data = [];
+        _products.each(function (index) {
+           data.push(_products[index].val());
+       });
+        let _dialog =bootbox.dialog({
+            title: "Массовое присвоение тегов",
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>',
+            size: 'large'
+        });
+
+        _dialog.init(function () {
+            $.get('/cms/modals/tags/tagging', function (data) {
+                _dialog.find('.bootbox-body').html(data);
+                let demo1 = $('select[name="tags[]"]').bootstrapDualListbox(
+                    {
+                        infoText:"Доступно {0}",
+                        infoTextEmpty: "Доступно 0",
+                        infoTextFiltered: '<span class="label label-purple label-lg">Отфильтрованные</span>',
+                        nonSelectedListLabel: 'Доступные',
+                        selectedListLabel: 'Выбранные',
+                    }
+                );
+                let container1 = demo1.bootstrapDualListbox('getContainer');
+                container1.find('.btn').addClass('btn-white btn-info btn-bold');
+            })
+        })
+        // var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox({infoTextFiltered: '<span class="label label-purple label-lg">Filtered</span>'});
+        // var container1 = demo1.bootstrapDualListbox('getContainer');
+        // container1.find('.btn').addClass('btn-white btn-info btn-bold');
+
+        // $.ajax({
+        //     method: 'POST',
+        //     dataType: 'json',
+        //     data: {"products": data},
+        //     processData: false,
+        //     contentType: false,
+        //     beforeSend: function(xhr) {xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val());},
+        //     url: '/cms/products/copy/'+product_id
+        // })
+        //     .done(function (msg) {
+        //        window.location = msg.location;
+        //     })
+        //     .error(function (msg) {
+        //         console.log(msg);
+        //     });
+    });
+
 });
 
