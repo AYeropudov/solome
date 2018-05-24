@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cms.apps.CmsConfig',
     'mptt',
-    'imagekit'
+    'imagekit',
+    'froala_editor'
 ]
 
 MIDDLEWARE = [

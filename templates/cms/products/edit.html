@@ -196,4 +196,22 @@
     <script src="{% static "cms/assets/js/jquery.colorbox.min.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/assets/js/bootbox.js" %}"></script>
     <script type="text/javascript" src="{% static "cms/js/product.js" %}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" rel="stylesheet" />
+
+    <link href="{%  static "froala_editor/css/froala_editor.min.css" %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{%  static "froala_editor/css/froala_style.min.css" %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{%  static "froala_editor/css/plugins/colors.min.css" %}" type="text/css" media="all" rel="stylesheet" />
+    <link href="{%  static "froala_editor/css/plugins/line_breaker.min.css" %}" type="text/css" media="all" rel="stylesheet" />
+
+    <script type="text/javascript" src="{%  static "froala_editor/js/froala_editor.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/colors.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/align.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/font_size.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/line_breaker.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/lists.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/paragraph_format.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/paragraph_style.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/table.min.js" %}"></script>
+    <script type="text/javascript" src="{%  static "froala_editor/js/plugins/word_paste.min.js" %}"></script>
+    <script> $(function() { $('#descriptionField').froalaEditor() }); </script>
 {% endblock %}
