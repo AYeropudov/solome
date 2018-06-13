@@ -176,3 +176,6 @@ class ProductAttributes(models.Model):
 class ProductTag(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, db_index=True, null=True)
     tag = models.ForeignKey('Tag', on_delete=models.SET_NULL, db_index=True, null=True)
+
+    class Meta:
+        unique_together = ('product', 'tag')

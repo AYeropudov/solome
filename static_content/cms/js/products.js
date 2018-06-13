@@ -89,30 +89,30 @@ jQuery(function ($) {
     $('.tagging').on('click', function () {
        let _products = $('.mass-product:checked');
        let _dualList = null;
-
+       let data = [];
        let putTags = function () {
          try {
              $.ajax({
             method: 'POST',
             dataType: 'json',
-            data: {"products": data},
-            processData: false,
-            contentType: false,
+            data: JSON.stringify({"products": data, "tags": _dualList.val()}),
+            contentType: 'application/json',
             beforeSend: function(xhr) {xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val());},
-            url: '/cms/products/copy/'+product_id
+            url: '/cms/products/tagging/'
             })
             .done(function (msg) {
-               window.location = msg.location;
+               window.location.reload();
             })
             .error(function (msg) {
                 console.log(msg);
             });
              console.log(_dualList.val());
          } catch (e) {
+             console.log(e);
          }
        };
 
-       let data = [];
+
         _products.each(function (index) {
            data.push(_products[index].value);
        });
