@@ -1,0 +1,19 @@
+<div class="top-search">
+    <div id="search">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Поиск" name="search">
+                <select class="cate-dropdown hidden-xs hidden-sm" name="category_id">
+                    <option>Все разделы</option>
+                    {% for node in nodes %}
+                        <option value="{{ node.pk }}">{{ node.title }}</option>
+                        {% for child in node.get_children.all %}
+                            <option value="{{ child.pk }}">&nbsp;&nbsp;&nbsp;{{ child.title }}</option>
+                        {% endfor %}
+                    {% endfor %}
+                </select>
+                <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
